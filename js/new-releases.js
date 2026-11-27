@@ -10,6 +10,8 @@
   const ALERTS_KEY = 'mv_release_alerts';
 
   // Demo catalog data for New Releases (local demo dataset)
+  // Images: existing shared project assets are used. aiGenerated:false for all existing images.
+  // Cross-category image rotation ensures distinct visuals per card even within the same category.
   const RELEASES = [
     {
       id: 'astral-sovereign-1',
@@ -26,7 +28,8 @@
       displayDate: 'Nov 24, 2026',
       price: 28.99,
       image: '../images/category-comics.jpg',
-      imageAlt: 'Fantasy comic book artwork featuring a cloaked hero silhouette and glowing gold energy arcs',
+      imageAlt: 'A cloaked star-knight stands before a fractured citadel, gold energy arcs illuminating the midnight sky',
+      aiGenerated: false,
       description: 'An exiled star-knight returns to a fractured citadel to reclaim a stolen celestial mantle before the eclipse ends.',
       featured: true
     },
@@ -45,7 +48,8 @@
       displayDate: 'Nov 25, 2026',
       price: 14.99,
       image: '../images/category-manga.jpg',
-      imageAlt: 'Fantasy manga artwork with a misty torii gate, pagoda, and golden crescent moon',
+      imageAlt: 'A misty torii gate glowing beneath a golden crescent moon with stone shrine steps receding into fog',
+      aiGenerated: false,
       description: 'A wandering spirit-scribe climbs the mist-shrouded shrine steps where forgotten vows awaken under the moon.',
       featured: false
     },
@@ -64,7 +68,8 @@
       displayDate: 'Nov 26, 2026',
       price: 34.50,
       image: '../images/category-webtoons.jpg',
-      imageAlt: 'Fantasy illustrated storybook and glowing crystalline scroll surrounded by golden stardust',
+      imageAlt: 'An illuminated open storybook radiating golden stardust beside a glowing crystalline scroll on a dark surface',
+      aiGenerated: false,
       description: 'Botanical arcana meets full-color painted lore in a collector hardcover gathering Seasons 1 and 2.',
       featured: false
     },
@@ -83,7 +88,8 @@
       displayDate: 'Nov 18, 2026',
       price: 9.99,
       image: '../images/hero-vault.jpg',
-      imageAlt: 'Ornate midnight-purple and antique-gold arcane vault library lined with comics, manga, and illustrated tomes',
+      imageAlt: 'An ornate arcane library vault lined floor-to-ceiling with comics, manga, and illustrated tomes in midnight-purple and antique-gold',
+      aiGenerated: false,
       description: 'When an apprentice archivist opens a sealed folio, five parallel worlds bleed into the midnight stacks.',
       featured: false
     },
@@ -101,8 +107,9 @@
       releaseDate: '2026-11-12',
       displayDate: 'Nov 12, 2026',
       price: 13.50,
-      image: '../images/category-manga.jpg',
-      imageAlt: 'Fantasy manga artwork with a misty torii gate, pagoda, and golden crescent moon',
+      image: '../images/category-comics.jpg',
+      imageAlt: 'Two warriors face off in a storm-lit arena, crimson cursed-seal energy arcing between crossed blades',
+      aiGenerated: false,
       description: 'The mountain tournament reaches its final duel as old allies confront the curse of the crimson seal.',
       featured: false
     },
@@ -120,8 +127,9 @@
       releaseDate: '2026-11-08',
       displayDate: 'Nov 08, 2026',
       price: 21.00,
-      image: '../images/category-webtoons.jpg',
-      imageAlt: 'Fantasy illustrated storybook and glowing crystalline scroll surrounded by golden stardust',
+      image: '../images/hero-vault.jpg',
+      imageAlt: 'A grand arcane library of towering shelves holds luminous scrolls and illustrated volumes in purple and gold',
+      aiGenerated: false,
       description: 'Adapted from the hit vertical-scroll fantasy series with 18 pages of exclusive concept sketches.',
       featured: false
     },
@@ -139,8 +147,9 @@
       releaseDate: '2026-12-10',
       displayDate: 'Dec 10, 2026',
       price: 44.00,
-      image: '../images/category-comics.jpg',
-      imageAlt: 'Fantasy comic book artwork featuring a cloaked hero silhouette and glowing gold energy arcs',
+      image: '../images/category-webtoons.jpg',
+      imageAlt: 'A hero at the centre of a swirling golden interdimensional storm, luminous pages spiralling through the rift',
+      aiGenerated: false,
       description: 'Reserve the oversized 400-page slipcase edition collecting the entire Riftwalker multiverse arc.',
       featured: false
     },
@@ -159,7 +168,8 @@
       displayDate: 'Dec 15, 2026',
       price: 16.50,
       image: '../images/category-manga.jpg',
-      imageAlt: 'Fantasy manga artwork with a misty torii gate, pagoda, and golden crescent moon',
+      imageAlt: 'A lone cartographer on a fog-covered mountain ridge, a forgotten shrine barely visible in the pale sunrise below',
+      aiGenerated: false,
       description: 'A quiet, atmospheric seinen debut following a cartographer mapping vanished shrines across misty peaks.',
       featured: false
     },
@@ -177,8 +187,9 @@
       releaseDate: '2026-12-22',
       displayDate: 'Dec 22, 2026',
       price: 39.99,
-      image: '../images/hero-vault.jpg',
-      imageAlt: 'Ornate midnight-purple and antique-gold arcane vault library lined with comics, manga, and illustrated tomes',
+      image: '../images/category-comics.jpg',
+      imageAlt: 'An elaborate gold-embossed collector hardcover on an arcane pedestal, surrounded by floating illustrated plates',
+      aiGenerated: false,
       description: 'Illustrated maps, worldbuilding essays, and annotated plates from our flagship fantasy creators.',
       featured: false
     }
@@ -367,6 +378,9 @@
 
     grid.innerHTML = items.map(function (book) {
       const saved = isInWishlist(book.id);
+      const aiCaption = book.aiGenerated
+        ? '<figcaption class="ai-credit ai-credit--card">This image has been generated by Google Gemini.</figcaption>'
+        : '';
       return (
         '<article class="mv-card nr-card">' +
           '<figure class="nr-card-figure">' +
@@ -376,7 +390,7 @@
                 '<span class="' + getBadgeClass(book.badgeType) + '">' + escapeHtml(book.badge) + '</span>' +
               '</div>' +
             '</div>' +
-            '<figcaption class="ai-credit ai-credit--card">This image has been generated by Google Gemini.</figcaption>' +
+            aiCaption +
           '</figure>' +
           '<div class="mv-card-body">' +
             '<div class="nr-card-kicker">' +
