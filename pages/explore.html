@@ -4,120 +4,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore Multiverse Vault — Read physical books or explore our digital library. Read. Collect. Belong.">
   <title>Explore | Multiverse Vault</title>
-  <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Shared Stylesheets -->
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
 
-  <!-- Explore Page Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     .explore-hero {
       position: relative;
-      padding: var(--space-6) 0;
-      border-bottom: 1px solid var(--border-gold);
-      background:
-        radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.10), transparent 50%),
-        radial-gradient(circle at 85% 25%, rgba(92, 52, 150, 0.32), transparent 55%);
-      overflow: hidden;
       text-align: center;
-    }
-
-    .explore-hero-badge {
-      margin-bottom: var(--space-2);
-    }
-
-    .explore-hero-title {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      line-height: 1.1;
-      color: var(--text-cream);
-      margin-bottom: var(--space-4);
+      overflow: hidden;
     }
 
     .explore-hero-figure {
-      margin: 0 auto;
-      max-width: 820px;
       position: relative;
+      margin: 0;
     }
 
     .explore-hero-img {
       width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-gold-strong);
-      box-shadow: var(--shadow-card), var(--shadow-gold);
       display: block;
+      object-fit: cover;
     }
 
     .ai-credit {
-      margin-top: 0.45rem;
-      font-size: var(--fs-xs);
+      font-size: 11px;
       color: var(--text-muted);
-      font-style: italic;
+      text-align: center;
+      margin-top: 6px;
     }
 
     .options-section {
-      padding: var(--space-6) 0;
+      padding: 60px 0;
     }
 
     .options-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-4);
-      margin-top: var(--space-4);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
     }
 
     .option-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
-      padding: var(--space-5) var(--space-4);
-      background: linear-gradient(145deg, var(--bg-surface), var(--bg-elevated));
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      gap: var(--space-3);
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
-    }
-
-    .option-card:hover {
-      border-color: var(--border-gold-strong);
-      box-shadow: var(--shadow-card), var(--shadow-gold);
-      transform: translateY(-4px);
-    }
-
-    .option-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 72px;
-      height: 72px;
-      border-radius: var(--radius-md);
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border-gold-strong);
-      flex-shrink: 0;
+      padding: 35px 25px;
     }
 
     .option-title {
-      font-size: var(--fs-2xl);
-      color: var(--text-cream);
-      margin-bottom: 0.4rem;
+      margin-bottom: 12px;
     }
 
     .option-desc {
-      font-size: var(--fs-base);
-      color: var(--text-muted);
-      max-width: 36ch;
-      margin-bottom: var(--space-1);
+      margin-bottom: 25px;
+    }
+
+    .shop-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .collection-section {
+      padding: 50px 0 70px;
+    }
+
+    .collection-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .collection-header h2 {
+      margin: 12px 0;
+      color: var(--text-cream);
+    }
+
+    .collection-back {
+      margin-bottom: 30px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .book-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      text-align: center;
+      transition: transform 0.25s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-cover-link {
+      text-decoration: none;
+      display: block;
+    }
+
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius-md);
+    }
+
+    .book-card h3 {
+      color: var(--text-cream);
+      margin: 14px 0 8px;
+      font-size: 17px;
+    }
+
+    .book-card .btn {
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     @media (max-width: 768px) {
@@ -125,14 +138,22 @@
         grid-template-columns: 1fr;
       }
 
-      .explore-hero {
-        padding: var(--space-5) 0;
+      .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 480px) {
-      .option-card {
-        padding: var(--space-4) var(--space-3);
+      .shop-buttons {
+        flex-direction: column;
+      }
+
+      .shop-buttons .btn {
+        width: 100%;
+      }
+
+      .book-grid {
+        gap: 12px;
       }
     }
   </style>
@@ -140,242 +161,295 @@
 
 <body>
 
-  <!-- SHARED HEADER -->
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="mv-container navbar">
-      <a href="../index.html" class="brand">
-        <img src="../images/logo.jpg" alt="Multiverse Vault Logo" class="brand-logo" title="This image has been generated by Google Gemini.">
-        <span class="brand-text">
-          <span class="brand-name">Multiverse Vault</span>
-          <span class="brand-tagline">Read. Collect. Belong.</span>
-        </span>
+    <div class="mv-container header-inner">
+
+      <a href="../index.html" class="logo">
+        <img src="../images/logo.jpg" alt="Multiverse Vault Logo">
       </a>
 
-      <button
-        type="button"
-        id="nav-toggle"
-        class="nav-toggle"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="nav-menu"
-      >
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-
-      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
-        <ul class="nav-links">
-          <li><a href="../index.html" class="nav-link">Home</a></li>
-          <li><a href="explore.html" class="nav-link">Explore</a></li>
-          <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
-          <li><a href="deals.html" class="nav-link">Deals</a></li>
-          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <a href="my-library.html" class="nav-action-link">My Library</a>
-          <a href="wishlist.html" class="nav-action-link">Wishlist</a>
-          <a href="cart.html" class="nav-action-link">
-            Cart <span id="nav-cart-count" class="cart-count">0</span>
-          </a>
-          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
-        </div>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="explore.html" class="active">Explore</a>
+        <a href="new-releases.html">New Releases</a>
+        <a href="deals.html">Deals</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="about.html">About Us</a>
       </nav>
+
+      <div class="header-actions">
+        <a href="my-library.html">My Library</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+      </div>
+
     </div>
   </header>
 
-  <!-- EXPLORE PAGE CONTENT -->
   <main>
 
-    <!-- HERO SECTION -->
-    <section class="explore-hero" aria-labelledby="explore-hero-heading">
-      <div class="mv-container">
-        <span class="mv-badge mv-badge-gold explore-hero-badge">Your Adventure Begins Here</span>
+    <!-- HERO -->
+    <section class="explore-hero">
 
-        <h1 id="explore-hero-heading" class="explore-hero-title">
-          Join the Vault
-        </h1>
+      <figure class="explore-hero-figure">
+        <img
+          src="../images/explore-hero.jpg"
+          alt="Fantasy world of books"
+          class="explore-hero-img"
+          onerror="this.style.display='none'"
+        >
+        <figcaption class="ai-credit">
+          This image has been AI-generated.
+        </figcaption>
+      </figure>
 
-        <figure class="explore-hero-figure">
-          <img
-            src="../images/explore-hero.jpg"
-            alt="A girl stepping through a glowing golden portal opening from a magical book into a fantasy world"
-            class="explore-hero-img"
-            id="explore-hero-img"
-          >
-          <figcaption class="ai-credit">
-            This image has been generated by Google Gemini.
-          </figcaption>
-        </figure>
+      <div class="explore-hero-content">
+        <span class="mv-badge mv-badge-gold">Discover Your Next Adventure</span>
+        <h1 class="explore-hero-title">Join the Vault</h1>
+        <p>Explore stories, discover new worlds, and find your next favourite read.</p>
       </div>
+
     </section>
 
-    <!-- TWO MAIN READING OPTIONS -->
-    <section class="options-section" aria-labelledby="options-heading">
+    <!-- READING OPTIONS -->
+    <section class="options-section" id="reading-options">
+
       <div class="mv-container">
 
-        <div class="mv-section-header" style="text-align: center;">
-          <h2 id="options-heading">How Do You Want to Read?</h2>
-          <p style="margin: var(--space-1) auto 0; max-width: 520px;">
-            Choose your path into the Multiverse Vault — explore physical books or enjoy reading digitally.
-          </p>
+        <div class="section-heading">
+          <h2>Choose Your Reading Experience</h2>
+          <p>Explore our physical and digital collections.</p>
         </div>
 
         <div class="options-grid">
 
-          <!-- OPTION 1: PHYSICAL BOOKS -->
-          <div class="option-card">
+          <!-- PHYSICAL BOOKS -->
+          <article class="option-card">
 
-            <div class="option-icon" aria-hidden="true">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="6" width="18" height="26" rx="3" fill="none" stroke="#d4af37" stroke-width="2"/>
-                <rect x="10" y="6" width="18" height="26" rx="3" fill="none" stroke="#ebd074" stroke-width="1.5" stroke-dasharray="3 2"/>
-                <line x1="9" y1="13" x2="20" y2="13" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="9" y1="17" x2="20" y2="17" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="9" y1="21" x2="16" y2="21" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+            <div class="option-icon">
+              <span>📚</span>
             </div>
 
-            <div>
-              <h3 class="option-title">Read Physical Books</h3>
+            <h2 class="option-title">Read Physical Books</h2>
 
-              <p class="option-desc">
-                Explore your favourite stories in physical form and discover books to add to your collection.
-              </p>
+            <p class="option-desc">
+              Discover printed comics and manga and find your next addition to your collection.
+            </p>
+
+            <div class="shop-buttons">
+
+              <button
+                type="button"
+                class="btn btn-gold btn-lg"
+                onclick="showCollection('comics')"
+              >
+                Shop Comics
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline btn-lg"
+                onclick="showCollection('manga')"
+              >
+                Shop Manga
+              </button>
+
             </div>
 
-            <a href="book-details.html" class="btn btn-gold btn-lg">
-              Explore Catalog
-            </a>
+          </article>
 
-          </div>
+          <!-- DIGITAL BOOKS -->
+          <article class="option-card">
 
-          <!-- OPTION 2: DIGITAL BOOKS -->
-          <div class="option-card">
-
-            <div class="option-icon" aria-hidden="true">
-              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="8" width="28" height="20" rx="3" fill="none" stroke="#d4af37" stroke-width="2"/>
-                <line x1="19" y1="28" x2="19" y2="32" stroke="#d4af37" stroke-width="2"/>
-                <line x1="13" y1="32" x2="25" y2="32" stroke="#d4af37" stroke-width="2" stroke-linecap="round"/>
-                <polygon points="15,18 15,14 23,16" fill="#ebd074"/>
-              </svg>
+            <div class="option-icon">
+              <span>💻</span>
             </div>
 
-            <div>
-              <h3 class="option-title">Read Digital Books</h3>
+            <h2 class="option-title">Read Digital Books</h2>
 
-              <p class="option-desc">
-                Explore the digital library and enjoy your favourite stories, chapters and illustrated reads online.
-              </p>
-            </div>
+            <p class="option-desc">
+              Explore our digital library and enjoy reading online.
+            </p>
 
             <a href="reader.html" class="btn btn-outline btn-lg">
               Explore Digital Library
             </a>
 
-          </div>
+          </article>
 
         </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOOK COLLECTIONS -->
+    <section id="book-collection" class="collection-section" hidden>
+
+      <div class="mv-container">
+
+        <button
+          type="button"
+          class="btn btn-outline collection-back"
+          onclick="backToExplore()"
+        >
+          ← Back to Explore
+        </button>
+
+        <!-- COMICS -->
+        <div id="comics-collection" hidden>
+
+          <div class="collection-header">
+            <span class="mv-badge mv-badge-gold">Explore the Vault</span>
+            <h2>Comics Collection</h2>
+            <p>Discover illustrated stories and explore new adventures.</p>
+          </div>
+
+          <div class="book-grid">
+
+            <article class="book-card">
+              <a href="book-details.html?book=shadow-king" class="book-cover-link">
+                <img src="../images/comics/comic-01.jpg" alt="Shadow King comic cover" class="book-cover">
+                <h3>Shadow King</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=shadow-king" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=crimson-quest" class="book-cover-link">
+                <img src="../images/comics/comic-02.jpg" alt="Crimson Quest comic cover" class="book-cover">
+                <h3>Crimson Quest</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=crimson-quest" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=guardians-of-eldoria" class="book-cover-link">
+                <img src="../images/comics/comic-03.jpg" alt="Guardians of Eldoria comic cover" class="book-cover">
+                <h3>Guardians of Eldoria</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=guardians-of-eldoria" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=the-last-realm" class="book-cover-link">
+                <img src="../images/comics/comic-04.jpg" alt="The Last Realm comic cover" class="book-cover">
+                <h3>The Last Realm</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=the-last-realm" class="btn btn-gold">View Details</a>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- MANGA -->
+        <div id="manga-collection" hidden>
+
+          <div class="collection-header">
+            <span class="mv-badge mv-badge-gold">Explore the Vault</span>
+            <h2>Manga Collection</h2>
+            <p>Step into captivating worlds and discover your next manga adventure.</p>
+          </div>
+
+          <div class="book-grid">
+
+            <article class="book-card">
+              <a href="book-details.html?book=moonlight" class="book-cover-link">
+                <img src="../images/manga/manga-01.jpg" alt="Moonlight manga cover" class="book-cover">
+                <h3>Moonlight</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=moonlight" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=crystal-hearts" class="book-cover-link">
+                <img src="../images/manga/manga-02.jpg" alt="Crystal Hearts manga cover" class="book-cover">
+                <h3>Crystal Hearts</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=crystal-hearts" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=whispering-sky" class="book-cover-link">
+                <img src="../images/manga/manga-03.jpg" alt="Whispering Sky manga cover" class="book-cover">
+                <h3>Whispering Sky</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=whispering-sky" class="btn btn-gold">View Details</a>
+            </article>
+
+            <article class="book-card">
+              <a href="book-details.html?book=crimson-moon" class="book-cover-link">
+                <img src="../images/manga/manga-04.jpg" alt="Crimson Moon manga cover" class="book-cover">
+                <h3>Crimson Moon</h3>
+              </a>
+              <p class="ai-credit">AI-generated image.</p>
+              <a href="book-details.html?book=crimson-moon" class="btn btn-gold">View Details</a>
+            </article>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- SHARED FOOTER -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="mv-container">
-      <div class="footer-grid">
-
-        <div class="footer-brand">
-          <a href="../index.html" class="brand">
-            <img src="../images/logo.jpg" alt="Multiverse Vault Logo" class="brand-logo">
-            <span class="brand-text">
-              <span class="brand-name">Multiverse Vault</span>
-              <span class="brand-tagline">Read. Collect. Belong.</span>
-            </span>
-          </a>
-
-          <p class="brand-ai-credit">
-            This logo image has been generated by Google Gemini.
-          </p>
-
-          <p>
-            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">Discover</h3>
-          <ul class="footer-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="explore.html">Explore Catalog</a></li>
-            <li><a href="new-releases.html">New Releases</a></li>
-            <li><a href="deals.html">Vault Deals</a></li>
-            <li><a href="reviews.html">Reader Reviews</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">Your Vault</h3>
-          <ul class="footer-links">
-            <li><a href="my-library.html">My Library</a></li>
-            <li><a href="wishlist.html">Wishlist</a></li>
-            <li><a href="reader.html">Digital Reader</a></li>
-            <li><a href="cart.html">Shopping Cart</a></li>
-            <li><a href="login.html">Sign In</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">Guild &amp; Support</h3>
-          <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact &amp; FAQ</a></li>
-          </ul>
-        </div>
-
-      </div>
-
       <div class="footer-bottom">
-        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
-        <span>Read. Collect. Belong.</span>
+        <p>© 2026 Multiverse Vault. All rights reserved.</p>
       </div>
-
     </div>
   </footer>
 
-  <!-- SHARED SCRIPT -->
   <script src="../js/main.js"></script>
 
-  <!-- HERO IMAGE FALLBACK -->
   <script>
-    (function () {
-      var img = document.getElementById('explore-hero-img');
+    function showCollection(category) {
+      document.getElementById('reading-options').hidden = true;
+      document.getElementById('book-collection').hidden = false;
 
-      if (!img) return;
+      document.getElementById('comics-collection').hidden = category !== 'comics';
+      document.getElementById('manga-collection').hidden = category !== 'manga';
 
-      img.addEventListener('error', function () {
-        img.style.display = 'none';
+      history.replaceState(null, '', '?category=' + category);
 
-        var placeholder = document.createElement('div');
-
-        placeholder.style.cssText =
-          'width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#1b112c,#25183c);border-radius:var(--radius-lg);border:1px solid rgba(212,175,55,0.65);';
-
-        placeholder.innerHTML =
-          '<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-          '<circle cx="60" cy="60" r="50" stroke="#d4af37" stroke-opacity=".4" stroke-width="2" stroke-dasharray="6 5"/>' +
-          '<path d="M28 46C42 38 56 40 60 50C64 40 78 38 92 46V82C78 74 64 76 60 86C56 76 42 74 28 82V46Z" fill="#120b1e" stroke="#ebd074" stroke-width="2"/>' +
-          '<line x1="60" y1="50" x2="60" y2="86" stroke="#d4af37" stroke-width="1.5"/>' +
-          '<circle cx="60" cy="34" r="6" fill="#ebd074"/>' +
-          '</svg>';
-
-        img.parentNode.insertBefore(placeholder, img);
+      document.getElementById('book-collection').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
-    })();
+    }
+
+    function backToExplore() {
+      document.getElementById('book-collection').hidden = true;
+      document.getElementById('reading-options').hidden = false;
+
+      history.replaceState(null, '', 'explore.html');
+
+      document.getElementById('reading-options').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get('category');
+
+      if (category === 'comics' || category === 'manga') {
+        showCollection(category);
+      }
+    });
   </script>
 
 </body>
