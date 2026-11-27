@@ -382,6 +382,16 @@ p {
   flex-shrink: 0;
 }
 
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-gold-strong);
+  box-shadow: var(--shadow-gold);
+  flex-shrink: 0;
+}
+
 .brand-mark {
   display: inline-flex;
   align-items: center;
@@ -395,6 +405,13 @@ p {
   font-weight: 700;
   font-size: var(--fs-lg);
   box-shadow: var(--shadow-gold);
+}
+
+.brand-ai-credit {
+  margin-top: 0.5rem;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 .brand-text {
