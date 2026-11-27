@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reader Reviews — Browse community ratings, honest impressions, and share your own review at Multiverse Vault.">
+  <title>Reader Reviews | Multiverse Vault</title>
+
+  <!-- Google Fonts (Cinzel + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets (Subpage Relative Paths: ../) -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <!-- Page 5 Stylesheet -->
+  <link rel="stylesheet" href="../css/reviews.css">
+</head>
+<body>
+  <!-- ==================== SHARED HEADER (SUBPAGE) ==================== -->
+  <header class="site-header">
+    <div class="mv-container navbar">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">MV</span>
+        <span class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
+          <li><a href="deals.html" class="nav-link">Deals</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="my-library.html" class="nav-action-link">My Library</a>
+          <a href="wishlist.html" class="nav-action-link">Wishlist</a>
+          <a href="cart.html" class="nav-action-link">
+            Cart <span id="nav-cart-count" class="cart-count">0</span>
+          </a>
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== READER REVIEWS CONTENT ==================== -->
+  <main>
+    <!-- 1. Hero & Overall Rating Summary -->
+    <section class="rv-hero" aria-labelledby="reviews-heading">
+      <div class="mv-container rv-hero-grid">
+        <div>
+          <span class="mv-badge mv-badge-gold">Reader Guild Chronicles</span>
+          <h1 id="reviews-heading" class="rv-hero-title">Reader Reviews</h1>
+          <p class="rv-hero-intro">
+            Explore honest impressions from fellow comic fans, manga collectors, and webtoon readers,
+            vote on the most helpful critiques, and publish your own star rating to the vault.
+          </p>
+          <div class="rv-hero-actions">
+            <a href="#reviews-feed" class="btn btn-gold btn-lg btn-block-mobile">Browse Reviews</a>
+            <a href="#write-review" class="btn btn-outline btn-lg btn-block-mobile">Write a Review</a>
+          </div>
+        </div>
+
+        <aside class="rv-summary-card" aria-label="Overall Vault Rating Summary">
+          <div class="rv-summary-header">
+            <div>
+              <div class="rv-score-block">
+                <span id="rv-average-score" class="rv-score-number">4.3</span>
+                <span class="rv-score-max">/ 5.0</span>
+              </div>
+              <div id="rv-average-stars" class="rv-stars-display" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            </div>
+            <div class="rv-total-count">
+              <strong class="text-cream" style="display: block;">Vault Rating</strong>
+              <span id="rv-total-reviews">Based on 6 reviews</span>
+            </div>
+          </div>
+
+          <div id="rv-distribution" class="rv-distribution"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. Featured Reader Reviews -->
+    <section class="mv-section" aria-labelledby="featured-reviews-heading">
+      <div class="mv-container">
+        <div class="mv-section-header">
+          <span class="mv-badge mv-badge-gold">Guild Highlights</span>
+          <h2 id="featured-reviews-heading" style="margin-top: 0.75rem;">Featured Reader Reviews</h2>
+          <p>Standout impressions on print craftsmanship, illustration quality, and storytelling.</p>
+        </div>
+
+        <div id="rv-featured-grid" class="mv-grid-2"></div>
+      </div>
+    </section>
+
+    <!-- 3. Filter Controls & Community Reviews Feed -->
+    <section id="reviews-feed" class="mv-section" aria-labelledby="feed-heading" style="padding-top: 0;">
+      <div class="mv-container">
+        <div class="mv-section-header">
+          <span class="mv-badge mv-badge-gold">Community Impressions</span>
+          <h2 id="feed-heading" style="margin-top: 0.75rem;">All Reader Reviews</h2>
+          <p>Filter by realm, narrow by minimum star rating, search by book or reviewer, and upvote helpful reviews.</p>
+        </div>
+
+        <div class="rv-toolbar" role="region" aria-label="Filter and sort reader reviews">
+          <div class="rv-toolbar-grid">
+            <div class="mv-form-group rv-search-group">
+              <label for="review-search" class="mv-label">Search Reviews</label>
+              <input
+                type="search"
+                id="review-search"
+                class="mv-input"
+                placeholder="Search book title, reviewer, or keyword..."
+              >
+            </div>
+
+            <div class="mv-form-group">
+              <label for="review-rating-filter" class="mv-label">Minimum Rating</label>
+              <select id="review-rating-filter" class="mv-select">
+                <option value="0">All Ratings</option>
+                <option value="5">5 Stars Only</option>
+                <option value="4">4+ Stars</option>
+                <option value="3">3+ Stars</option>
+              </select>
+            </div>
+
+            <div class="mv-form-group">
+              <label for="review-sort" class="mv-label">Sort By</label>
+              <select id="review-sort" class="mv-select">
+                <option value="newest">Most Recent</option>
+                <option value="helpful">Most Helpful</option>
+                <option value="highest">Highest Rated</option>
+                <option value="lowest">Lowest Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rv-filter-row">
+            <div class="rv-filter-pills" role="group" aria-label="Filter reviews by category">
+              <button type="button" class="rv-filter-btn is-active" data-review-category="all" aria-pressed="true">
+                All Realms
+              </button>
+              <button type="button" class="rv-filter-btn" data-review-category="comics" aria-pressed="false">
+                Comics
+              </button>
+              <button type="button" class="rv-filter-btn" data-review-category="manga" aria-pressed="false">
+                Manga
+              </button>
+              <button type="button" class="rv-filter-btn" data-review-category="webtoons" aria-pressed="false">
+                Webtoons &amp; Novels
+              </button>
+            </div>
+
+            <a href="#write-review" class="btn btn-outline btn-sm">Add Your Review</a>
+          </div>
+        </div>
+
+        <div class="rv-results-bar">
+          <p id="reviews-count" class="rv-results-count">Showing <strong>6</strong> of <strong>6</strong> reviews</p>
+          <p class="rv-demo-note">Sample demo reviews &bull; Your submissions &amp; helpful votes save locally in this browser.</p>
+        </div>
+
+        <div id="reviews-grid" class="mv-grid-2" aria-live="polite"></div>
+
+        <div id="reviews-empty" class="rv-empty-state" hidden>
+          <h3>No Reviews Match Your Filters</h3>
+          <p>Try lowering the minimum star rating, clearing your search text, or selecting All Realms.</p>
+          <button type="button" id="reset-review-filters" class="btn btn-gold">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Write a Review Form -->
+    <section id="write-review" class="mv-section rv-submit-section" aria-labelledby="submit-review-heading">
+      <div class="mv-container">
+        <div class="rv-submit-panel">
+          <div>
+            <span class="mv-badge mv-badge-gold">Share Your Voice</span>
+            <h2 id="submit-review-heading" style="margin-top: 0.75rem;">Submit a Reader Review</h2>
+            <p style="margin-top: 0.75rem;">
+              Finished a new comic arc, manga volume, or illustrated omnibus? Rate it from 1 to 5 stars
+              and publish your review directly to the community feed below.
+            </p>
+            <ul class="rv-guidelines">
+              <li>Rate story pacing, illustration craft, and print or digital quality</li>
+              <li>Updates the Vault average rating and star distribution right away</li>
+              <li>Saved locally in your browser so your review stays after refresh</li>
+            </ul>
+          </div>
+
+          <form id="review-submit-form" class="rv-form-card" novalidate>
+            <div class="rv-form-row">
+              <div class="mv-form-group">
+                <label for="review-author" class="mv-label">Your Name *</label>
+                <input
+                  type="text"
+                  id="review-author"
+                  name="reviewAuthor"
+                  class="mv-input"
+                  placeholder="e.g., Mutayyab Zulfiqar"
+                  required
+                >
+                <span id="review-author-error" class="rv-field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="mv-form-group">
+                <label for="review-category" class="mv-label">Category *</label>
+                <select id="review-category" name="reviewCategory" class="mv-select" required>
+                  <option value="">Select a realm...</option>
+                  <option value="comics">Comics</option>
+                  <option value="manga">Manga</option>
+                  <option value="webtoons">Webtoons &amp; Novels</option>
+                </select>
+                <span id="review-category-error" class="rv-field-error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="mv-form-group">
+              <label for="review-book" class="mv-label">Book or Volume Title *</label>
+              <input
+                type="text"
+                id="review-book"
+                name="reviewBook"
+                class="mv-input"
+                placeholder="e.g., Astral Sovereign, Vol. 1"
+                required
+              >
+              <span id="review-book-error" class="rv-field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="mv-form-group">
+              <span id="rating-picker-label" class="mv-label">Star Rating (1&ndash;5) *</span>
+              <input type="hidden" id="review-rating-value" name="reviewRating" value="5">
+              <div class="rv-star-picker" role="radiogroup" aria-labelledby="rating-picker-label">
+                <button type="button" class="rv-star-btn is-active" data-star-value="1" role="radio" aria-checked="false" aria-label="1 star">&#9733;</button>
+                <button type="button" class="rv-star-btn is-active" data-star-value="2" role="radio" aria-checked="false" aria-label="2 stars">&#9733;</button>
+                <button type="button" class="rv-star-btn is-active" data-star-value="3" role="radio" aria-checked="false" aria-label="3 stars">&#9733;</button>
+                <button type="button" class="rv-star-btn is-active" data-star-value="4" role="radio" aria-checked="false" aria-label="4 stars">&#9733;</button>
+                <button type="button" class="rv-star-btn is-active" data-star-value="5" role="radio" aria-checked="true" aria-label="5 stars">&#9733;</button>
+                <span id="review-rating-text" class="rv-star-label">5 / 5 &mdash; Masterpiece</span>
+              </div>
+            </div>
+
+            <div class="mv-form-group">
+              <label for="review-headline" class="mv-label">Review Headline *</label>
+              <input
+                type="text"
+                id="review-headline"
+                name="reviewHeadline"
+                class="mv-input"
+                placeholder="Summarize your impression in one line"
+                required
+              >
+              <span id="review-headline-error" class="rv-field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="mv-form-group">
+              <label for="review-body" class="mv-label">Your Review *</label>
+              <textarea
+                id="review-body"
+                name="reviewBody"
+                class="mv-textarea"
+                rows="4"
+                placeholder="Share what stood out in the artwork, characters, or edition quality (minimum 15 characters)..."
+                required
+              ></textarea>
+              <span id="review-body-error" class="rv-field-error" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block-mobile">Publish Review</button>
+
+            <div id="review-form-status" class="rv-status-banner" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SHARED FOOTER (SUBPAGE) ==================== -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">MV</span>
+            <span class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </span>
+          </a>
+          <p>
+            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Discover</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="explore.html">Explore Catalog</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="reviews.html">Reader Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Your Vault</h3>
+          <ul class="footer-links">
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Guild &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared Script (Subpage Relative Path: ../) -->
+  <script src="../js/main.js"></script>
+  <!-- Page 5 Script -->
+  <script src="../js/reviews.js"></script>
+</body>
+</html>

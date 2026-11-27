@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multiverse Vault — A fantasy-inspired comic, manga, and illustrated bookstore. Read. Collect. Belong.">
+  <title>Multiverse Vault — Read. Collect. Belong.</title>
+
+  <!-- Google Fonts (Cinzel + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets (Root Relative Paths) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Home Page Layout Styles (Uses shared CSS variables from css/style.css) -->
+  <style>
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border-gold);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(212, 175, 55, 0.12), transparent 45%),
+        radial-gradient(circle at 82% 35%, rgba(92, 52, 150, 0.35), transparent 55%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .hero-tagline {
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.15;
+      margin-bottom: var(--space-3);
+      color: var(--text-cream);
+    }
+
+    .hero-intro {
+      font-size: var(--fs-lg);
+      max-width: 58ch;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .hero-pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-gold);
+    }
+
+    .hero-pillar {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    .hero-pillar strong {
+      display: block;
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      font-size: var(--fs-base);
+    }
+
+    .hero-visual {
+      position: relative;
+      background: linear-gradient(155deg, rgba(37, 24, 60, 0.95), rgba(18, 11, 30, 0.98));
+      border: 1px solid var(--border-gold-strong);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-card), var(--shadow-gold);
+      text-align: center;
+    }
+
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 1px solid var(--border-gold);
+      border-radius: calc(var(--radius-lg) - 6px);
+      pointer-events: none;
+    }
+
+    .hero-figure {
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-gold);
+    }
+
+    .hero-visual-caption {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      font-size: var(--fs-lg);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-visual-sub {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    .ai-credit {
+      margin-top: 0.45rem;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Category Cards */
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .category-figure {
+      margin: 0;
+    }
+
+    .category-visual {
+      height: 195px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-gold);
+      background-color: var(--bg-elevated);
+    }
+
+    .category-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition);
+    }
+
+    .category-card:hover .category-visual img {
+      transform: scale(1.04);
+    }
+
+    .ai-credit--card {
+      padding: 0.5rem var(--space-3) 0;
+      margin-top: 0;
+    }
+
+    .category-card .mv-card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+    }
+
+    .category-cta {
+      margin-top: auto;
+      padding-top: 0.5rem;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--gold-primary);
+    }
+
+    .category-card:hover .category-cta {
+      color: var(--gold-light);
+    }
+
+    /* Browse by Mood Section */
+    .mood-section {
+      background-color: rgba(27, 17, 44, 0.45);
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .mood-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-2);
+    }
+
+    .mood-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      padding: var(--space-3);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      transition: transform var(--transition), border-color var(--transition), background-color var(--transition), box-shadow var(--transition);
+    }
+
+    .mood-card:hover {
+      transform: translateY(-3px);
+      background-color: var(--bg-elevated);
+      border-color: var(--border-gold-strong);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .mood-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(212, 175, 55, 0.14);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .mood-title {
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      color: var(--text-cream);
+    }
+
+    .mood-desc {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    /* About Multiverse Vault Section */
+    .about-panel {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-4);
+      background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .about-copy p {
+      margin-top: var(--space-2);
+    }
+
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .about-highlight-item {
+      padding: var(--space-2);
+      background-color: rgba(18, 11, 30, 0.65);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+    }
+
+    .about-highlight-item h3 {
+      font-size: var(--fs-base);
+      color: var(--gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .about-highlight-item p {
+      font-size: var(--fs-sm);
+    }
+
+    /* Homepage Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .about-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        max-width: 460px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: var(--space-5) 0;
+      }
+
+      .about-panel {
+        padding: var(--space-3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ==================== SHARED HEADER (ROOT) ==================== -->
+  <header class="site-header">
+    <div class="mv-container navbar">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">MV</span>
+        <span class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="pages/explore.html" class="nav-link">Explore</a></li>
+          <li><a href="pages/new-releases.html" class="nav-link">New Releases</a></li>
+          <li><a href="pages/deals.html" class="nav-link">Deals</a></li>
+          <li><a href="pages/reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="pages/about.html" class="nav-link">About Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="pages/my-library.html" class="nav-action-link">My Library</a>
+          <a href="pages/wishlist.html" class="nav-action-link">Wishlist</a>
+          <a href="pages/cart.html" class="nav-action-link">
+            Cart <span id="nav-cart-count" class="cart-count">0</span>
+          </a>
+          <a href="pages/login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HOME PAGE CONTENT ==================== -->
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero-section">
+      <div class="mv-container hero-grid">
+        <div class="hero-content">
+          <span class="mv-badge mv-badge-gold hero-tagline">Read. Collect. Belong.</span>
+          <h1 class="hero-title">Stories Worth Shelf Space &ndash; And Screen Time.</h1>
+          <p class="hero-intro">
+            Step inside Multiverse Vault, a curated fantasy sanctuary for comic books, manga volumes,
+            webtoons, and collector&rsquo;s illustrated editions. Build your physical library, unlock
+            digital chapters, and discover worlds crafted for every kind of reader.
+          </p>
+
+          <div class="hero-actions">
+            <a href="pages/explore.html" class="btn btn-gold btn-lg btn-block-mobile">Explore the Vault</a>
+            <a href="#browse-mood" class="btn btn-outline btn-lg btn-block-mobile">Browse by Mood</a>
+          </div>
+
+          <div class="hero-pillars">
+            <div class="hero-pillar">
+              <strong>Curated Realms</strong>
+              Comics, Manga &amp; Illustrated Editions
+            </div>
+            <div class="hero-pillar">
+              <strong>Shelf &amp; Screen</strong>
+              Print Collectibles + Digital Reader
+            </div>
+            <div class="hero-pillar">
+              <strong>Reader Guild</strong>
+              Reviews, Wishlists &amp; Shared Lore
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="Multiverse Vault showcase artwork">
+          <figure class="hero-figure">
+            <img
+              src="images/hero-vault.jpg"
+              alt="Ornate midnight-purple and antique-gold arcane vault library lined with comics, manga, and illustrated tomes"
+              class="hero-image"
+            >
+            <figcaption class="ai-credit">This image has been generated by Google Gemini.</figcaption>
+          </figure>
+          <p class="hero-visual-caption">The Archivist&rsquo;s Collection</p>
+          <p class="hero-visual-sub">Curated print volumes &amp; instant digital access across every universe.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. Browse by Category -->
+    <section class="mv-section" aria-labelledby="category-heading">
+      <div class="mv-container">
+        <div class="mv-section-header">
+          <span class="mv-badge mv-badge-gold">Three Formats, Endless Worlds</span>
+          <h2 id="category-heading" style="margin-top: 0.75rem;">Browse by Category</h2>
+          <p>
+            Choose your preferred medium&mdash;from full-color comic runs and inked manga sagas to
+            lushly illustrated novels.
+          </p>
+        </div>
+
+        <div class="mv-grid-3">
+          <a href="pages/explore.html?category=comics" class="mv-card category-card">
+            <figure class="category-figure">
+              <div class="category-visual">
+                <img
+                  src="images/category-comics.jpg"
+                  alt="Fantasy comic book artwork featuring a cloaked hero silhouette and glowing gold energy arcs"
+                >
+              </div>
+              <figcaption class="ai-credit ai-credit--card">
+                This image has been generated by Google Gemini.
+              </figcaption>
+            </figure>
+            <div class="mv-card-body">
+              <h3 class="mv-card-title">Comics &amp; Graphic Novels</h3>
+              <p class="mv-card-meta">
+                Multiverse crossovers, dark fantasy arcs, indie standalones, and deluxe hardcover omnibuses.
+              </p>
+              <span class="category-cta">Explore Comics &rarr;</span>
+            </div>
+          </a>
+
+          <a href="pages/explore.html?category=manga" class="mv-card category-card">
+            <figure class="category-figure">
+              <div class="category-visual">
+                <img
+                  src="images/category-manga.jpg"
+                  alt="Fantasy manga artwork with a misty torii gate, pagoda, and golden crescent moon"
+                >
+              </div>
+              <figcaption class="ai-credit ai-credit--card">
+                This image has been generated by Google Gemini.
+              </figcaption>
+            </figure>
+            <div class="mv-card-body">
+              <h3 class="mv-card-title">Manga</h3>
+              <p class="mv-card-meta">
+                Inked shonen adventures, atmospheric seinen epics, and complete collector&rsquo;s box sets.
+              </p>
+              <span class="category-cta">Explore Manga &rarr;</span>
+            </div>
+          </a>
+
+          <a href="pages/explore.html?category=webtoons" class="mv-card category-card">
+            <figure class="category-figure">
+              <div class="category-visual">
+                <img
+                  src="images/category-webtoons.jpg"
+                  alt="Fantasy illustrated storybook and glowing crystalline scroll surrounded by golden stardust"
+                >
+              </div>
+              <figcaption class="ai-credit ai-credit--card">
+                This image has been generated by Google Gemini.
+              </figcaption>
+            </figure>
+            <div class="mv-card-body">
+              <h3 class="mv-card-title">Webtoons &amp; Illustrated Novels</h3>
+              <p class="mv-card-meta">
+                Vibrant vertical-scroll series, serialized light novels, and richly painted hardcover editions.
+              </p>
+              <span class="category-cta">Explore Webtoons &amp; Novels &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Browse by Mood -->
+    <section id="browse-mood" class="mv-section mood-section" aria-labelledby="mood-heading">
+      <div class="mv-container">
+        <div class="mv-section-header">
+          <span class="mv-badge mv-badge-gold">Find Your Next Obsession</span>
+          <h2 id="mood-heading" style="margin-top: 0.75rem;">Browse by Mood</h2>
+          <p>
+            Not sure where to start? Pick the atmosphere you are craving and step directly into the right realm.
+          </p>
+        </div>
+
+        <div class="mood-grid">
+          <a href="pages/explore.html?mood=fantasy" class="mood-card">
+            <span class="mood-icon" aria-hidden="true">&#9733;</span>
+            <h3 class="mood-title">Fantasy</h3>
+            <p class="mood-desc">Enchanted kingdoms, arcane magic, and mythic quests.</p>
+          </a>
+
+          <a href="pages/explore.html?mood=romance" class="mood-card">
+            <span class="mood-icon" aria-hidden="true">&#9829;</span>
+            <h3 class="mood-title">Romance</h3>
+            <p class="mood-desc">Star-crossed rivals, slow-burn bonds, and heartfelt tales.</p>
+          </a>
+
+          <a href="pages/explore.html?mood=mystery" class="mood-card">
+            <span class="mood-icon" aria-hidden="true">&#9672;</span>
+            <h3 class="mood-title">Mystery</h3>
+            <p class="mood-desc">Hidden clues, shadowy conspiracies, and sharp twists.</p>
+          </a>
+
+          <a href="pages/explore.html?mood=adventure" class="mood-card">
+            <span class="mood-icon" aria-hidden="true">&#10148;</span>
+            <h3 class="mood-title">Adventure</h3>
+            <p class="mood-desc">Uncharted horizons, found families, and daring voyages.</p>
+          </a>
+
+          <a href="pages/explore.html?mood=action" class="mood-card">
+            <span class="mood-icon" aria-hidden="true">&#9876;</span>
+            <h3 class="mood-title">Action</h3>
+            <p class="mood-desc">High-stakes duels, kinetic panels, and unstoppable heroes.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. About Multiverse Vault -->
+    <section class="mv-section" aria-labelledby="about-heading">
+      <div class="mv-container">
+        <div class="about-panel">
+          <div class="about-copy">
+            <span class="mv-badge mv-badge-gold">Our Bookstore &amp; Community</span>
+            <h2 id="about-heading" style="margin-top: 0.75rem;">Welcome to the Guild</h2>
+            <p>
+              Multiverse Vault was created for readers who believe great visual storytelling deserves a
+              permanent home. Whether you love unboxing limited-edition print volumes or reading late into
+              the night on screen, every title in our vault is selected with collectors and storytellers in mind.
+            </p>
+            <p>
+              Save favorites to your personal Wishlist, keep unlocked chapters inside My Library, and trade
+              honest impressions with fellow readers across every genre.
+            </p>
+            <div class="about-actions">
+              <a href="pages/about.html" class="btn btn-gold">Read Our Story</a>
+              <a href="pages/reader.html" class="btn btn-outline">Open Digital Reader</a>
+              <a href="pages/contact.html" class="btn btn-ghost">Contact &amp; FAQ</a>
+            </div>
+          </div>
+
+          <div class="about-highlights">
+            <div class="about-highlight-item">
+              <h3>Read Anywhere</h3>
+              <p>Switch seamlessly between physical shelf editions and our distraction-free Digital Reader.</p>
+            </div>
+            <div class="about-highlight-item">
+              <h3>Collect With Pride</h3>
+              <p>Track series on your Wishlist and curate a Vault Library tailored to your taste.</p>
+            </div>
+            <div class="about-highlight-item">
+              <h3>Belong to the Community</h3>
+              <p>Browse honest community reviews, seasonal deals, and weekly new releases.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SHARED FOOTER (ROOT) ==================== -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">MV</span>
+            <span class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </span>
+          </a>
+          <p>
+            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Discover</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pages/explore.html">Explore Catalog</a></li>
+            <li><a href="pages/new-releases.html">New Releases</a></li>
+            <li><a href="pages/deals.html">Vault Deals</a></li>
+            <li><a href="pages/reviews.html">Reader Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Your Vault</h3>
+          <ul class="footer-links">
+            <li><a href="pages/my-library.html">My Library</a></li>
+            <li><a href="pages/wishlist.html">Wishlist</a></li>
+            <li><a href="pages/reader.html">Digital Reader</a></li>
+            <li><a href="pages/cart.html">Shopping Cart</a></li>
+            <li><a href="pages/login.html">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Guild &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared Script (Root Relative Path) -->
+  <script src="js/main.js"></script>
+</body>
+</html>

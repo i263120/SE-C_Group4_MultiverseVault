@@ -1,0 +1,530 @@
+/* ==========================================================================
+   Multiverse Vault — Reader Reviews Page Styles (Page 5)
+   Extends css/style.css and css/responsive.css using shared :root variables.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero & Overall Rating Summary
+   -------------------------------------------------------------------------- */
+.rv-hero {
+  position: relative;
+  padding: var(--space-5) 0 var(--space-4);
+  border-bottom: 1px solid var(--border-gold);
+  background:
+    radial-gradient(circle at 16% 24%, rgba(212, 175, 55, 0.12), transparent 45%),
+    radial-gradient(circle at 86% 28%, rgba(92, 52, 150, 0.34), transparent 55%);
+}
+
+.rv-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.rv-hero-title {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  line-height: 1.15;
+}
+
+.rv-hero-intro {
+  font-size: var(--fs-lg);
+  max-width: 58ch;
+  margin-bottom: var(--space-3);
+}
+
+.rv-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Rating Summary Panel */
+.rv-summary-card {
+  padding: var(--space-3);
+  background: linear-gradient(155deg, rgba(37, 24, 60, 0.94), rgba(18, 11, 30, 0.98));
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+}
+
+.rv-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.rv-score-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.rv-score-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.rv-score-max {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.rv-stars-display {
+  color: var(--gold-primary);
+  font-size: var(--fs-lg);
+  letter-spacing: 0.08em;
+}
+
+.rv-total-count {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.rv-distribution {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.rv-dist-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 42px;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--fs-xs);
+}
+
+.rv-dist-label {
+  color: var(--text-cream);
+  font-weight: 600;
+}
+
+.rv-dist-track {
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(18, 11, 30, 0.85);
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
+}
+
+.rv-dist-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  transition: width 0.35s ease;
+}
+
+.rv-dist-count {
+  text-align: right;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   2. Featured Reader Reviews
+   -------------------------------------------------------------------------- */
+.rv-featured-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: var(--space-3);
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.rv-featured-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.rv-quote {
+  font-size: var(--fs-base);
+  color: var(--text-cream);
+  line-height: 1.7;
+  border-left: 3px solid var(--gold-primary);
+  padding-left: var(--space-2);
+}
+
+.rv-featured-footer {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-gold);
+  font-size: var(--fs-sm);
+}
+
+/* --------------------------------------------------------------------------
+   3. Filter Toolbar & Review Feed
+   -------------------------------------------------------------------------- */
+.rv-toolbar {
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.rv-toolbar-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.75fr 0.75fr;
+  gap: var(--space-2);
+  align-items: end;
+  margin-bottom: var(--space-3);
+}
+
+.rv-toolbar-grid .mv-form-group {
+  margin-bottom: 0;
+}
+
+.rv-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-gold);
+}
+
+.rv-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rv-filter-btn {
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-gold);
+  background-color: var(--bg-vault);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.rv-filter-btn:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+.rv-filter-btn.is-active {
+  background-color: var(--gold-primary);
+  border-color: var(--gold-primary);
+  color: var(--text-dark);
+}
+
+.rv-results-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.rv-results-count {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.rv-results-count strong {
+  color: var(--gold-light);
+}
+
+.rv-demo-note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* Individual Review Card */
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.rv-card .mv-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.75rem;
+}
+
+.rv-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.rv-reviewer-name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text-cream);
+}
+
+.rv-review-date {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.rv-card-stars {
+  color: var(--gold-primary);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.rv-book-ref {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  background-color: rgba(18, 11, 30, 0.58);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+}
+
+.rv-book-title {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--gold-light);
+}
+
+.rv-card-headline {
+  font-size: var(--fs-lg);
+  color: var(--text-cream);
+}
+
+.rv-card-text {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.rv-card-footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.rv-origin-tag {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.btn-helpful {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-helpful.is-voted {
+  background-color: rgba(212, 175, 55, 0.18);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+
+.rv-empty-state {
+  text-align: center;
+  padding: var(--space-5) var(--space-3);
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-gold-strong);
+  border-radius: var(--radius-md);
+}
+
+.rv-empty-state p {
+  margin: 0.65rem auto var(--space-3);
+  max-width: 48ch;
+}
+
+/* --------------------------------------------------------------------------
+   4. Review Submission Form
+   -------------------------------------------------------------------------- */
+.rv-submit-section {
+  background-color: rgba(27, 17, 44, 0.45);
+  border-top: 1px solid var(--border-gold);
+}
+
+.rv-submit-panel {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.rv-guidelines {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: var(--space-3);
+}
+
+.rv-guidelines li {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.rv-guidelines li::before {
+  content: '\2605';
+  position: absolute;
+  left: 0;
+  color: var(--gold-primary);
+}
+
+.rv-form-card {
+  padding: var(--space-3);
+  background-color: rgba(18, 11, 30, 0.6);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+}
+
+.rv-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.rv-star-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rv-star-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-gold);
+  background-color: var(--bg-vault);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  transition: transform var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.rv-star-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+.rv-star-btn.is-active {
+  background-color: rgba(212, 175, 55, 0.18);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+
+.rv-star-label {
+  margin-left: 0.35rem;
+  font-size: var(--fs-sm);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.rv-field-error {
+  font-size: var(--fs-xs);
+  color: #ff9a96;
+  min-height: 1rem;
+}
+
+.mv-input.is-invalid,
+.mv-select.is-invalid,
+.mv-textarea.is-invalid {
+  border-color: var(--danger);
+}
+
+.rv-status-banner {
+  margin-top: var(--space-2);
+  padding: 0.85rem var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  display: none;
+}
+
+.rv-status-banner.is-visible {
+  display: block;
+}
+
+.rv-status-banner.is-success {
+  background-color: rgba(63, 163, 112, 0.16);
+  border: 1px solid rgba(63, 163, 112, 0.6);
+  color: #a9f0cb;
+}
+
+.rv-status-banner.is-error {
+  background-color: rgba(217, 83, 79, 0.16);
+  border: 1px solid rgba(217, 83, 79, 0.6);
+  color: #ffb2af;
+}
+
+/* --------------------------------------------------------------------------
+   5. Responsive Breakpoints (Tablet & Mobile)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .rv-hero-grid,
+  .rv-submit-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .rv-toolbar-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rv-search-group {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .rv-hero {
+    padding: var(--space-4) 0;
+  }
+
+  .rv-submit-panel {
+    padding: var(--space-3);
+  }
+
+  .rv-toolbar-grid,
+  .rv-form-row {
+    grid-template-columns: 1fr;
+  }
+}
