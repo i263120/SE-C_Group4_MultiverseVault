@@ -10,7 +10,8 @@
     CART: "mv_cart",
     WISHLIST: "mv_wishlist",
     LIBRARY: "mv_library",
-    FAVORITES: "mv_library_favorites"
+    FAVORITES: "mv_library_favorites",
+    USER: "mv_auth_user"
   };
 
   var CATALOG = [
@@ -953,9 +954,247 @@
     renderWishlist();
   }
 
+  /* ========================================================================
+     LOGIN / SIGN UP PAGE CONTROLLER
+     ======================================================================== */
+  function initLoginPage() {
+    var authCard = document.getElementById("authPortalCard");
+    if (!authCard) return;
+
+    var tabSignIn = document.getElementById("tabSignIn");
+    var tabSignUp = document.getElementById("tabSignUp");
+    var tabsWrap = document.getElementById("authTabsWrap");
+    var signInPane = document.getElementById("signInPane");
+    var signUpPane = document.getElementById("signUpPane");
+    var memberPane = document.getElementById("memberActivePane");
+
+    var loginForm = document.getElementById("loginForm");
+    var loginEmail = document.getElementById("loginEmail");
+    var loginPassword = document.getElementById("loginPassword");
+    var loginFeedback = document.getElementById("loginFeedback");
+
+    var registerForm = document.getElementById("registerForm");
+    var regName = document.getElementById("regName");
+    var regEmail = document.getElementById("regEmail");
+    var regPassword = document.getElementById("regPassword");
+    var regConfirm = document.getElementById("regConfirm");
+    var registerFeedback = document.getElementById("registerFeedback");
+
+    var forgotToggle = document.getElementById("forgotPasswordToggle");
+    var resetBox = document.getElementById("forgotResetBox");
+    var resetForm = document.getElementById("forgotResetForm");
+    var resetEmail = document.getElementById("resetEmail");
+    var resetFeedback = document.getElementById("resetFeedback");
+
+    var memberNameEl = document.getElementById("memberDisplayName");
+    var memberEmailEl = document.getElementById("memberDisplayEmail");
+    var signOutBtn = document.getElementById("memberSignOutBtn");
+
+    function getSavedUser() {
+      return readStorage(STORAGE_KEYS.USER, null);
+    }
+
+    function setMode(mode) {
+      var user = getSavedUser();
+      if (user && user.email) {
+        if (tabsWrap) tabsWrap.classList.add("mv-is-hidden");
+        if (signInPane) signInPane.classList.add("mv-is-hidden");
+        if (signUpPane) signUpPane.classList.add("mv-is-hidden");
+        if (memberPane) memberPane.classList.remove("mv-is-hidden");
+        if (memberNameEl) memberNameEl.textContent = user.name || "Vault Reader";
+        if (memberEmailEl) memberEmailEl.textContent = user.email;
+        return;
+      }
+
+      if (tabsWrap) tabsWrap.classList.remove("mv-is-hidden");
+      if (memberPane) memberPane.classList.add("mv-is-hidden");
+
+      var isRegister = mode === "register";
+      if (tabSignIn) {
+        tabSignIn.classList.toggle("is-active", !isRegister);
+        tabSignIn.setAttribute("aria-selected", String(!isRegister));
+      }
+      if (tabSignUp) {
+        tabSignUp.classList.toggle("is-active", isRegister);
+        tabSignUp.setAttribute("aria-selected", String(isRegister));
+      }
+      if (signInPane) signInPane.classList.toggle("mv-is-hidden", isRegister);
+      if (signUpPane) signUpPane.classList.toggle("mv-is-hidden", !isRegister);
+    }
+
+    function isValidEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    function setFeedback(el, msg, isError) {
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.toggle("is-error", Boolean(isError));
+      el.classList.toggle("is-success", !isError && Boolean(msg));
+    }
+
+    if (tabSignIn) {
+      tabSignIn.addEventListener("click", function () { setMode("login"); });
+    }
+    if (tabSignUp) {
+      tabSignUp.addEventListener("click", function () { setMode("register"); });
+    }
+
+    document.querySelectorAll("[data-switch-auth]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setMode(btn.getAttribute("data-switch-auth"));
+      });
+    });
+
+    /* Password visibility toggles */
+    document.querySelectorAll("[data-toggle-password]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var targetId = btn.getAttribute("data-toggle-password");
+        var input = document.getElementById(targetId);
+        if (!input) return;
+        var showing = input.type === "text";
+        input.type = showing ? "password" : "text";
+        btn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+        btn.setAttribute("aria-pressed", String(!showing));
+      });
+    });
+
+    /* Password strength indicator on Create Account */
+    var segs = document.querySelectorAll("[data-strength-seg]");
+    var strengthLabel = document.getElementById("passwordStrengthLabel");
+    if (regPassword && segs.length > 0 && strengthLabel) {
+      regPassword.addEventListener("input", function () {
+        var val = regPassword.value;
+        var score = 0;
+        if (val.length >= 6) score += 1;
+        if (/[A-Z]/.test(val) && /[0-9]/.test(val)) score += 1;
+        if (val.length >= 10 && /[^A-Za-z0-9]/.test(val)) score += 1;
+
+        var colors = ["rgba(255, 255, 255, 0.1)", "#f06d7d", "#f2c94c", "#5cd69a"];
+        var labels = ["Use at least 6 characters", "Weak — add numbers or capitals", "Fair — add a symbol for extra security", "Strong Vault Passphrase"];
+        segs.forEach(function (seg, idx) {
+          seg.style.backgroundColor = idx < score ? colors[score] : colors[0];
+        });
+        strengthLabel.textContent = val.length === 0 ? labels[0] : labels[score] || labels[1];
+      });
+    }
+
+    /* Forgot password inline helper */
+    if (forgotToggle && resetBox) {
+      forgotToggle.addEventListener("click", function () {
+        var hidden = resetBox.classList.toggle("mv-is-hidden");
+        forgotToggle.setAttribute("aria-expanded", String(!hidden));
+      });
+    }
+
+    if (resetForm && resetEmail && resetFeedback) {
+      resetForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var mail = resetEmail.value.trim();
+        if (!isValidEmail(mail)) {
+          setFeedback(resetFeedback, "Enter a valid email address to receive a reset link.", true);
+          return;
+        }
+        setFeedback(resetFeedback, "Reset link dispatched to " + mail + ".", false);
+        resetForm.reset();
+        showToast("Password reset instructions sent.");
+      });
+    }
+
+    /* Sign In submit */
+    if (loginForm && loginEmail && loginPassword) {
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var email = loginEmail.value.trim();
+        var pass = loginPassword.value;
+
+        if (!isValidEmail(email)) {
+          setFeedback(loginFeedback, "Please enter a valid email address (e.g., reader@domain.com).", true);
+          loginEmail.focus();
+          return;
+        }
+        if (pass.length < 6) {
+          setFeedback(loginFeedback, "Password must be at least 6 characters.", true);
+          loginPassword.focus();
+          return;
+        }
+
+        var derivedName = email.split("@")[0].replace(/[._-]+/g, " ");
+        derivedName = derivedName.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+
+        writeStorage(STORAGE_KEYS.USER, {
+          name: derivedName,
+          email: email,
+          signedInAt: new Date().toISOString()
+        });
+        setFeedback(loginFeedback, "", false);
+        showToast("Signed in to Multiverse Vault!");
+        setMode("member");
+      });
+    }
+
+    /* Create Account submit */
+    if (registerForm && regName && regEmail && regPassword && regConfirm) {
+      registerForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var name = regName.value.trim();
+        var email = regEmail.value.trim();
+        var pass = regPassword.value;
+        var confirm = regConfirm.value;
+
+        if (name.length < 2) {
+          setFeedback(registerFeedback, "Please enter your reader name (at least 2 characters).", true);
+          regName.focus();
+          return;
+        }
+        if (!isValidEmail(email)) {
+          setFeedback(registerFeedback, "Please enter a valid email address.", true);
+          regEmail.focus();
+          return;
+        }
+        if (pass.length < 6) {
+          setFeedback(registerFeedback, "Password must be at least 6 characters long.", true);
+          regPassword.focus();
+          return;
+        }
+        if (pass !== confirm) {
+          setFeedback(registerFeedback, "Passwords do not match.", true);
+          regConfirm.focus();
+          return;
+        }
+
+        writeStorage(STORAGE_KEYS.USER, {
+          name: name,
+          email: email,
+          signedInAt: new Date().toISOString()
+        });
+        setFeedback(registerFeedback, "", false);
+        showToast("Welcome to the Vault, " + name + "!");
+        setMode("member");
+      });
+    }
+
+    if (signOutBtn) {
+      signOutBtn.addEventListener("click", function () {
+        try {
+          localStorage.removeItem(STORAGE_KEYS.USER);
+        } catch (err) {
+          // Ignore storage removal errors.
+        }
+        if (loginForm) loginForm.reset();
+        if (registerForm) registerForm.reset();
+        setMode("login");
+        showToast("You have signed out of your Vault account.");
+      });
+    }
+
+    setMode("login");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSharedShell();
     initLibraryPage();
     initWishlistPage();
+    initLoginPage();
   });
 })();

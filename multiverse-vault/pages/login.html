@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | Multiverse Vault</title>
+  <meta name="description" content="Sign in or create your Multiverse Vault account to access your saved reading shelf, wishlist, and order history.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/vault-pages.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../js/vault-pages.js" defer></script>
+</head>
+<body class="mv-body">
+  <header class="mv-header">
+    <div class="mv-container mv-nav-bar">
+      <a class="mv-brand" href="../index.html" aria-label="Multiverse Vault Home">
+        <img class="mv-brand-logo" src="../images/multiverse-vault-logo.svg" alt="Multiverse Vault logo" width="42" height="42">
+        <span class="mv-brand-text">
+          <span class="mv-brand-name">MULTIVERSE VAULT</span>
+          <span class="mv-brand-tagline">READ. COLLECT. BELONG.</span>
+        </span>
+      </a>
+
+      <nav class="mv-nav-desktop" aria-label="Primary navigation">
+        <ul class="mv-nav-group">
+          <li><a class="mv-nav-link" href="../index.html">Home</a></li>
+          <li><a class="mv-nav-link" href="explore.html">Explore</a></li>
+          <li><a class="mv-nav-link" href="new-releases.html">New Releases</a></li>
+          <li><a class="mv-nav-link" href="deals.html">Deals</a></li>
+          <li><a class="mv-nav-link" href="reviews.html">Reviews</a></li>
+          <li><a class="mv-nav-link" href="about.html">About Us</a></li>
+        </ul>
+
+        <span class="mv-nav-divider" aria-hidden="true"></span>
+
+        <ul class="mv-nav-group">
+          <li><a class="mv-nav-link" href="my-library.html">My Library</a></li>
+          <li>
+            <a class="mv-nav-link" href="wishlist.html">
+              Wishlist
+              <span class="mv-nav-badge mv-nav-badge--subtle" data-wishlist-count>4</span>
+            </a>
+          </li>
+          <li>
+            <a class="mv-nav-link" href="cart.html">
+              Cart
+              <span class="mv-nav-badge" data-cart-count>0</span>
+            </a>
+          </li>
+          <li><a class="mv-login-btn is-active" href="login.html" aria-current="page">Login</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="mv-menu-toggle" id="mvMenuToggle" aria-expanded="false" aria-controls="mvMobileDrawer" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mv-mobile-drawer" id="mvMobileDrawer">
+      <ul class="mv-mobile-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="new-releases.html">New Releases</a></li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mv-mobile-divider" aria-hidden="true"></li>
+        <li><a href="my-library.html">My Library</a></li>
+        <li><a href="wishlist.html">Wishlist <span class="mv-nav-badge mv-nav-badge--subtle" data-wishlist-count>4</span></a></li>
+        <li><a href="cart.html">Cart <span class="mv-nav-badge" data-cart-count>0</span></a></li>
+        <li><a class="is-active" href="login.html" aria-current="page">Login</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="mv-main">
+    <section class="mv-auth-section" aria-label="Member Sign In Portal">
+      <div class="mv-container mv-auth-grid">
+        <div>
+          <span class="mv-pill-badge">READ. COLLECT. BELONG. · MEMBER PORTAL</span>
+          <h1 class="mv-hero-title">Unlock Your Sanctuary Across Every Realm.</h1>
+          <p class="mv-hero-subtitle">
+            Sign in to Multiverse Vault to sync your unlocked digital chapters, keep track of collector’s editions
+            in your wishlist, and manage physical book deliveries from one place.
+          </p>
+
+          <div class="mv-auth-perks" aria-label="Vault membership benefits">
+            <div class="mv-perk-card">
+              <span class="mv-perk-icon" aria-hidden="true">✦</span>
+              <div>
+                <h2 class="mv-perk-title">Synced Reading Shelf</h2>
+                <p class="mv-perk-desc">Pick up any comic issue, manga volume, or webtoon chapter exactly where you paused.</p>
+              </div>
+            </div>
+
+            <div class="mv-perk-card">
+              <span class="mv-perk-icon" aria-hidden="true">♡</span>
+              <div>
+                <h2 class="mv-perk-title">Wishlist &amp; Price Drop Alerts</h2>
+                <p class="mv-perk-desc">Bookmark limited print runs and claim vault deals before collector stock runs out.</p>
+              </div>
+            </div>
+
+            <div class="mv-perk-card">
+              <span class="mv-perk-icon" aria-hidden="true">◈</span>
+              <div>
+                <h2 class="mv-perk-title">Order History &amp; Early Drops</h2>
+                <p class="mv-perk-desc">Track shipments for hardcover editions and unlock member-exclusive pre-orders.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-hero-frame-outer">
+          <div class="mv-hero-frame-inner" id="authPortalCard">
+            <div class="mv-auth-tabs" id="authTabsWrap" role="tablist" aria-label="Authentication mode">
+              <button type="button" class="mv-auth-tab is-active" id="tabSignIn" role="tab" aria-selected="true" aria-controls="signInPane">Sign In</button>
+              <button type="button" class="mv-auth-tab" id="tabSignUp" role="tab" aria-selected="false" aria-controls="signUpPane">Create Account</button>
+            </div>
+
+            <!-- Sign In Pane -->
+            <div id="signInPane" role="tabpanel" aria-labelledby="tabSignIn">
+              <span class="mv-eyebrow">Multiverse Vault Member</span>
+              <h2 class="mv-auth-title">Welcome Back, Reader</h2>
+              <p class="mv-auth-subtitle">Sign in to access your saved reading shelf, wishlist and order history.</p>
+
+              <form class="mv-auth-form" id="loginForm" novalidate>
+                <div class="mv-field">
+                  <label class="mv-label" for="loginEmail">Email Address</label>
+                  <input type="email" id="loginEmail" class="mv-input mv-input--auth" placeholder="reader@domain.com" autocomplete="email" required>
+                </div>
+
+                <div class="mv-field">
+                  <label class="mv-label" for="loginPassword">Password</label>
+                  <div class="mv-password-wrap">
+                    <input type="password" id="loginPassword" class="mv-input mv-input--auth" placeholder="Enter your password" autocomplete="current-password" required>
+                    <button type="button" class="mv-eye-btn" data-toggle-password="loginPassword" aria-label="Show password" aria-pressed="false">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mv-auth-row">
+                  <label class="mv-checkbox-label">
+                    <input type="checkbox" id="rememberMe" checked>
+                    <span>Keep me signed in</span>
+                  </label>
+                  <button type="button" class="mv-link-btn" id="forgotPasswordToggle" aria-expanded="false" aria-controls="forgotResetBox">Forgot password?</button>
+                </div>
+
+                <p class="mv-form-feedback" id="loginFeedback" aria-live="polite"></p>
+
+                <button type="submit" class="mv-btn mv-btn-primary">Log In →</button>
+              </form>
+
+              <div class="mv-reset-box mv-is-hidden" id="forgotResetBox">
+                <span class="mv-eyebrow">Password Recovery</span>
+                <form id="forgotResetForm" novalidate style="display:grid; gap:10px;">
+                  <label class="mv-sr-only" for="resetEmail">Recovery email address</label>
+                  <input type="email" id="resetEmail" class="mv-input" placeholder="Enter your account email">
+                  <button type="submit" class="mv-btn mv-btn-secondary mv-btn-sm">Send Reset Link</button>
+                </form>
+                <p class="mv-form-feedback" id="resetFeedback" aria-live="polite"></p>
+              </div>
+
+              <p class="mv-auth-switch">
+                New to Multiverse Vault?
+                <button type="button" class="mv-link-btn" data-switch-auth="register">Create an Account</button>
+              </p>
+            </div>
+
+            <!-- Create Account Pane -->
+            <div id="signUpPane" class="mv-is-hidden" role="tabpanel" aria-labelledby="tabSignUp">
+              <span class="mv-eyebrow">Join the Sanctuary</span>
+              <h2 class="mv-auth-title">Create Your Vault Account</h2>
+              <p class="mv-auth-subtitle">Build your physical library, unlock digital chapters, and save favorites across realms.</p>
+
+              <form class="mv-auth-form" id="registerForm" novalidate>
+                <div class="mv-field">
+                  <label class="mv-label" for="regName">Reader Name</label>
+                  <input type="text" id="regName" class="mv-input mv-input--auth" placeholder="Enter your full name" autocomplete="name" required>
+                </div>
+
+                <div class="mv-field">
+                  <label class="mv-label" for="regEmail">Email Address</label>
+                  <input type="email" id="regEmail" class="mv-input mv-input--auth" placeholder="reader@domain.com" autocomplete="email" required>
+                </div>
+
+                <div class="mv-field">
+                  <label class="mv-label" for="regPassword">Password</label>
+                  <div class="mv-password-wrap">
+                    <input type="password" id="regPassword" class="mv-input mv-input--auth" placeholder="At least 6 characters" autocomplete="new-password" required>
+                    <button type="button" class="mv-eye-btn" data-toggle-password="regPassword" aria-label="Show password" aria-pressed="false">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="mv-strength-bar" aria-hidden="true">
+                    <span class="mv-strength-seg" data-strength-seg></span>
+                    <span class="mv-strength-seg" data-strength-seg></span>
+                    <span class="mv-strength-seg" data-strength-seg></span>
+                  </div>
+                  <span class="mv-strength-label" id="passwordStrengthLabel">Use at least 6 characters</span>
+                </div>
+
+                <div class="mv-field">
+                  <label class="mv-label" for="regConfirm">Confirm Password</label>
+                  <div class="mv-password-wrap">
+                    <input type="password" id="regConfirm" class="mv-input mv-input--auth" placeholder="Re-enter your password" autocomplete="new-password" required>
+                    <button type="button" class="mv-eye-btn" data-toggle-password="regConfirm" aria-label="Show confirm password" aria-pressed="false">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <p class="mv-form-feedback" id="registerFeedback" aria-live="polite"></p>
+
+                <button type="submit" class="mv-btn mv-btn-primary">Create Account →</button>
+              </form>
+
+              <p class="mv-auth-switch">
+                Already a Vault member?
+                <button type="button" class="mv-link-btn" data-switch-auth="login">Sign In</button>
+              </p>
+            </div>
+
+            <!-- Signed-in Member Pane -->
+            <div id="memberActivePane" class="mv-member-panel mv-is-hidden">
+              <div class="mv-member-badge">
+                <span aria-hidden="true">✓</span>
+                <span>Vault Session Active</span>
+              </div>
+              <div>
+                <span class="mv-eyebrow">Signed In As</span>
+                <h2 class="mv-auth-title" id="memberDisplayName">Vault Reader</h2>
+                <p class="mv-auth-subtitle" id="memberDisplayEmail" style="margin-bottom:0;">reader@domain.com</p>
+              </div>
+              <div style="display:grid; gap:10px; margin-top:6px;">
+                <a class="mv-btn mv-btn-primary" href="my-library.html">Go to My Library →</a>
+                <a class="mv-btn mv-btn-secondary" href="wishlist.html">Open Saved Wishlist</a>
+                <button type="button" class="mv-btn mv-btn-secondary" id="memberSignOutBtn">Sign Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mv-toast" id="mvToast" role="status" aria-live="polite"></div>
+
+  <footer class="mv-footer">
+    <div class="mv-container">
+      <div class="mv-footer-grid">
+        <div class="mv-footer-brand-col">
+          <a class="mv-brand" href="../index.html">
+            <img class="mv-brand-logo" src="../images/multiverse-vault-logo.svg" alt="Multiverse Vault logo" width="38" height="38">
+            <span class="mv-brand-text">
+              <span class="mv-brand-name">MULTIVERSE VAULT</span>
+              <span class="mv-brand-tagline">READ. COLLECT. BELONG.</span>
+            </span>
+          </a>
+          <p class="mv-footer-desc">
+            Join our vault for early collector drops, digital chapter dispatches, and member-only discounts across fantasy comics and manga.
+          </p>
+          <form class="mv-newsletter-form" id="mvNewsletterForm" novalidate>
+            <label class="mv-sr-only" for="mvNewsletterEmail">Email address</label>
+            <input type="email" id="mvNewsletterEmail" class="mv-input" placeholder="you@gmail.com" required>
+            <button type="submit" class="mv-btn mv-btn-primary mv-btn-sm">Join Our Vault</button>
+          </form>
+          <p class="mv-newsletter-msg" id="mvNewsletterMsg" aria-live="polite"></p>
+        </div>
+
+        <div>
+          <h3 class="mv-footer-heading">Shop</h3>
+          <ul class="mv-footer-links">
+            <li><a href="explore.html">Explore Catalogue</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="mv-footer-heading">Account</h3>
+          <ul class="mv-footer-links">
+            <li><a href="login.html">Log In / Sign Up</a></li>
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="contact.html">Help &amp; Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mv-footer-bottom">
+        <span>&copy; 2026 Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
