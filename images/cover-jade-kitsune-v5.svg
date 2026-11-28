@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="jadeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#091c18"/>
+      <stop offset="55%" stop-color="#143832"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#jadeBg)"/>
+  <!-- Spirit Flame Aura -->
+  <circle cx="300" cy="330" r="135" fill="#2d7a64" opacity="0.35" stroke="#5ed4a8" stroke-width="1.5"/>
+  <!-- Stylized Kitsune Mask -->
+  <polygon points="195,215 245,275 215,310" fill="#f5efe0" stroke="#d4af37" stroke-width="2"/>
+  <polygon points="405,215 355,275 385,310" fill="#f5efe0" stroke="#d4af37" stroke-width="2"/>
+  <path d="M215 290 Q300 265 385 290 L355 415 Q300 455 245 415 Z" fill="#f5efe0" stroke="#d4af37" stroke-width="3"/>
+  <path d="M245 340 L282 352 L252 365 Z" fill="#143832"/>
+  <path d="M355 340 L318 352 L348 365 Z" fill="#143832"/>
+  <path d="M285 385 L300 412 L315 385" fill="none" stroke="#d9534f" stroke-width="3"/>
+  <!-- Jade Spirit Wisps -->
+  <circle cx="155" cy="445" r="14" fill="#5ed4a8" opacity="0.8"/>
+  <circle cx="445" cy="435" r="14" fill="#5ed4a8" opacity="0.8"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">FOLKLORE MANGA • VOL. 5</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">SHRINE OF THE</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">JADE KITSUNE</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">YUMI WATANABE</text>
+</svg>

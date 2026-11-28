@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="ashBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0b16"/>
+      <stop offset="50%" stop-color="#2e1326"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#ashBg)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <!-- Crimson Moon Seal -->
+  <circle cx="300" cy="290" r="125" fill="#7a1622" opacity="0.65" stroke="#d9534f" stroke-width="3"/>
+  <!-- Lightning Bolt -->
+  <path d="M430 95 L340 235 L385 235 L270 390 L330 265 L285 265 Z" fill="#ebd074" opacity="0.85"/>
+  <!-- Pagoda Silhouette -->
+  <g fill="#0e0612" stroke="#d4af37" stroke-opacity="0.35">
+    <path d="M180 430 Q300 400 420 430 L395 450 L205 450 Z"/>
+    <path d="M150 495 Q300 462 450 495 L420 518 L180 518 Z"/>
+    <path d="M120 565 Q300 530 480 565 L445 595 L155 595 Z"/>
+  </g>
+  <!-- Crossed Blades -->
+  <line x1="185" y1="415" x2="415" y2="215" stroke="#f5efe0" stroke-width="5" stroke-linecap="round"/>
+  <line x1="415" y1="415" x2="185" y2="215" stroke="#d9534f" stroke-width="5" stroke-linecap="round"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">MANGA • VOLUME 12</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">BLADE OF THE</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">ASHEN PAGODA</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">KENJI MORIMOTO</text>
+</svg>

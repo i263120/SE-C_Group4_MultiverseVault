@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="obsBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#07040d"/>
+      <stop offset="50%" stop-color="#1c1130"/>
+      <stop offset="100%" stop-color="#0a0612"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#obsBg)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <!-- Five Parallel Portals -->
+  <circle cx="300" cy="240" r="56" fill="#2d1757" stroke="#ebd074" stroke-width="3"/>
+  <circle cx="170" cy="325" r="42" fill="#5e2a1e" stroke="#e09f3e" stroke-width="2.5"/>
+  <circle cx="430" cy="325" r="42" fill="#13384a" stroke="#7fe3d4" stroke-width="2.5"/>
+  <circle cx="205" cy="450" r="38" fill="#193b24" stroke="#7fe395" stroke-width="2.5"/>
+  <circle cx="395" cy="450" r="38" fill="#47183c" stroke="#f095d8" stroke-width="2.5"/>
+  <!-- Connecting Leylines -->
+  <g stroke="#d4af37" stroke-opacity="0.5" stroke-width="1.5">
+    <line x1="300" y1="296" x2="300" y2="540"/>
+    <line x1="205" y1="350" x2="300" y2="540"/>
+    <line x1="395" y1="350" x2="300" y2="540"/>
+    <line x1="238" y1="472" x2="300" y2="540"/>
+    <line x1="362" y1="472" x2="300" y2="540"/>
+  </g>
+  <!-- Open Obsidian Folio -->
+  <path d="M210 555 Q255 530 300 555 Q345 530 390 555 L390 605 Q345 585 300 605 Q255 585 210 605 Z" fill="#25183c" stroke="#ebd074" stroke-width="2.5"/>
+  <line x1="300" y1="555" x2="300" y2="605" stroke="#ebd074" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">FOIL VARIANT • ISSUE #1</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">CHRONICLES OF THE</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">OBSIDIAN VAULT</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">MARCUS STERLING</text>
+</svg>

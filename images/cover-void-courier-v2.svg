@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="voidBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060814"/>
+      <stop offset="50%" stop-color="#19163d"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#voidBg)"/>
+  <!-- Starlane Warp Rings -->
+  <ellipse cx="300" cy="340" rx="170" ry="60" transform="rotate(-18 300 340)" fill="none" stroke="#7c5cff" stroke-width="2.5"/>
+  <ellipse cx="300" cy="340" rx="130" ry="42" transform="rotate(-18 300 340)" fill="none" stroke="#ebd074" stroke-width="2"/>
+  <!-- Courier Ship -->
+  <polygon points="300,210 355,390 300,360 245,390" fill="#ebd074" stroke="#f5efe0" stroke-width="2"/>
+  <line x1="300" y1="365" x2="300" y2="520" stroke="#7c5cff" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#f5efe0" opacity="0.8">
+    <circle cx="110" cy="180" r="2"/><circle cx="480" cy="210" r="2.5"/><circle cx="150" cy="480" r="2"/><circle cx="445" cy="465" r="2"/>
+  </g>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">SCI-FI COMIC • VOL. 2</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="32" font-weight="bold" letter-spacing="3">VOID COURIER</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="22" letter-spacing="4">STARLANE DRIFT</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">MATEO SILVA</text>
+</svg>

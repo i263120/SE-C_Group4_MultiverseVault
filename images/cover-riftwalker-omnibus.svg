@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="riftBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b081c"/>
+      <stop offset="50%" stop-color="#2b1754"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+    <radialGradient id="vortex" cx="50%" cy="44%" r="44%">
+      <stop offset="0%" stop-color="#fff0b3" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#d4af37" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#120b1e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#riftBg)"/>
+  <rect width="600" height="800" fill="url(#vortex)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.5" stroke-width="2"/>
+  <!-- Interdimensional Vortex Rings -->
+  <ellipse cx="300" cy="360" rx="180" ry="95" transform="rotate(-25 300 360)" fill="none" stroke="#ebd074" stroke-width="2.5" stroke-opacity="0.75"/>
+  <ellipse cx="300" cy="360" rx="165" ry="75" transform="rotate(25 300 360)" fill="none" stroke="#9d6bff" stroke-width="2.5" stroke-opacity="0.7"/>
+  <ellipse cx="300" cy="360" rx="125" ry="50" transform="rotate(-5 300 360)" fill="none" stroke="#fff0b3" stroke-width="2"/>
+  <!-- Riftwalker Center Silhouette -->
+  <path d="M275 385 L300 260 L325 385 L345 470 L255 470 Z" fill="#120b1e" stroke="#ebd074" stroke-width="2"/>
+  <circle cx="300" cy="242" r="18" fill="#120b1e" stroke="#ebd074" stroke-width="2"/>
+  <!-- Dimensional Shards -->
+  <polygon points="140,240 175,215 165,260" fill="#d4af37" opacity="0.75"/>
+  <polygon points="445,230 475,265 425,270" fill="#ebd074" opacity="0.75"/>
+  <polygon points="160,480 195,455 185,505" fill="#9d6bff" opacity="0.7"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">SLIPCASE COLLECTOR OMNIBUS</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="34" font-weight="bold" letter-spacing="3">RIFTWALKER</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="20" letter-spacing="4">GOLDEN TEMPEST OMNIBUS</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">DEVON MERCER &amp; LIN WEI</text>
+</svg>

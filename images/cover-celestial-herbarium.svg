@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="herbBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1e1d"/>
+      <stop offset="50%" stop-color="#192a38"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="50%" cy="44%" r="42%">
+      <stop offset="0%" stop-color="#7fe3b0" stop-opacity="0.42"/>
+      <stop offset="55%" stop-color="#d4af37" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#120b1e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#herbBg)"/>
+  <rect width="600" height="800" fill="url(#bloom)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="2"/>
+  <!-- Botanical Arch Frame -->
+  <ellipse cx="300" cy="360" rx="165" ry="205" fill="none" stroke="#d4af37" stroke-width="2" stroke-opacity="0.65"/>
+  <ellipse cx="300" cy="360" rx="148" ry="188" fill="none" stroke="#7fe3b0" stroke-width="1" stroke-opacity="0.35"/>
+  <!-- Illuminated Celestial Flower & Leaves -->
+  <path d="M300 520 C300 410, 300 320, 300 220" stroke="#d4af37" stroke-width="3" fill="none"/>
+  <path d="M300 440 C240 415, 210 370, 230 330 C265 345, 290 385, 300 440 Z" fill="#3fa370" opacity="0.85" stroke="#ebd074" stroke-width="1.5"/>
+  <path d="M300 440 C360 415, 390 370, 370 330 C335 345, 310 385, 300 440 Z" fill="#3fa370" opacity="0.85" stroke="#ebd074" stroke-width="1.5"/>
+  <path d="M300 355 C245 335, 225 290, 250 260 C280 280, 295 315, 300 355 Z" fill="#5ec492" opacity="0.9" stroke="#ebd074" stroke-width="1.5"/>
+  <path d="M300 355 C355 335, 375 290, 350 260 C320 280, 305 315, 300 355 Z" fill="#5ec492" opacity="0.9" stroke="#ebd074" stroke-width="1.5"/>
+  <!-- Golden Blossom -->
+  <circle cx="300" cy="220" r="24" fill="#ebd074"/>
+  <circle cx="268" cy="238" r="18" fill="#d4af37" opacity="0.85"/>
+  <circle cx="332" cy="238" r="18" fill="#d4af37" opacity="0.85"/>
+  <circle cx="300" cy="188" r="16" fill="#fff0b3" opacity="0.9"/>
+  <!-- Stardust -->
+  <g fill="#ebd074" opacity="0.8">
+    <circle cx="215" cy="225" r="3"/><circle cx="385" cy="235" r="3"/><circle cx="240" cy="495" r="2.5"/><circle cx="360" cy="485" r="2.5"/>
+  </g>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">ILLUMINATED OMNIBUS</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">THE CELESTIAL</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">HERBARIUM</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">SORAIA LINDQVIST</text>
+</svg>

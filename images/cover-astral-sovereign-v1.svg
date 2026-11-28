@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d0718"/>
+      <stop offset="55%" stop-color="#221242"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+    <radialGradient id="nebula" cx="50%" cy="34%" r="48%">
+      <stop offset="0%" stop-color="#ebd074" stop-opacity="0.45"/>
+      <stop offset="45%" stop-color="#6d3bb5" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#120b1e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0b3"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8c6a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <rect width="600" height="800" fill="url(#nebula)"/>
+  <g fill="#f5efe0" opacity="0.75">
+    <circle cx="90" cy="110" r="2"/><circle cx="170" cy="80" r="1.5"/><circle cx="460" cy="95" r="2.2"/>
+    <circle cx="520" cy="180" r="1.5"/><circle cx="130" cy="240" r="1.8"/><circle cx="490" cy="310" r="2"/>
+    <circle cx="70" cy="430" r="1.5"/><circle cx="530" cy="460" r="1.8"/><circle cx="240" cy="130" r="1.4"/>
+  </g>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <rect x="34" y="34" width="532" height="732" rx="10" fill="none" stroke="#d4af37" stroke-opacity="0.2" stroke-width="1"/>
+  <!-- Eclipse & Nine Veils Rings -->
+  <circle cx="300" cy="275" r="148" fill="none" stroke="#d4af37" stroke-opacity="0.28" stroke-width="1.5" stroke-dasharray="6 8"/>
+  <circle cx="300" cy="275" r="112" fill="none" stroke="#ebd074" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="300" cy="275" r="82" fill="#0d0718" stroke="url(#gold)" stroke-width="3"/>
+  <!-- Crown of the Ninth Veil -->
+  <path d="M218 282 L238 220 L268 255 L300 198 L332 255 L362 220 L382 282 Z" fill="url(#gold)"/>
+  <rect x="220" y="286" width="160" height="14" rx="4" fill="url(#gold)"/>
+  <!-- Star-Knight Silhouette & Fractured Citadel -->
+  <path d="M120 620 L165 510 L205 555 L245 460 L300 420 L355 460 L395 555 L435 510 L480 620 Z" fill="#170d29" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M272 520 L300 445 L328 520 L350 615 L250 615 Z" fill="#0c0617"/>
+  <line x1="300" y1="315" x2="300" y2="445" stroke="#ebd074" stroke-width="2.5" stroke-opacity="0.7"/>
+  <!-- Title Banner -->
+  <text x="300" y="92" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="6">VOLUME I • 1ST PRINT</text>
+  <text x="300" y="675" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="34" font-weight="bold" letter-spacing="3">ASTRAL SOVEREIGN</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="18" letter-spacing="3">CROWN OF THE NINTH VEIL</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">ELENA VANCE &amp; KAELEN CHO</text>
+</svg>

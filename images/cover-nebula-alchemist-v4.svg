@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="nebBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d112b"/>
+      <stop offset="55%" stop-color="#2c174d"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+    <radialGradient id="flaskGlow" cx="50%" cy="55%" r="36%">
+      <stop offset="0%" stop-color="#d49eff" stop-opacity="0.75"/>
+      <stop offset="60%" stop-color="#d4af37" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#120b1e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#nebBg)"/>
+  <rect width="600" height="800" fill="url(#flaskGlow)"/>
+  <!-- Alchemical Transmutation Circle -->
+  <circle cx="300" cy="360" r="155" fill="none" stroke="#d4af37" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="300,215 425,432 175,432" fill="none" stroke="#ebd074" stroke-width="1.8" stroke-opacity="0.6"/>
+  <!-- Alembic Flask -->
+  <rect x="280" y="245" width="40" height="65" fill="#1e1538" stroke="#ebd074" stroke-width="2.5"/>
+  <circle cx="300" cy="390" r="85" fill="#231240" stroke="#ebd074" stroke-width="3"/>
+  <path d="M225 405 Q265 375 300 400 Q335 425 375 395 A82 82 0 0 1 225 405 Z" fill="#9d5cff" opacity="0.85"/>
+  <g fill="#fff0b3">
+    <circle cx="285" cy="375" r="5"/><circle cx="320" cy="360" r="4"/><circle cx="302" cy="335" r="3.5"/>
+  </g>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">ILLUSTRATED EDITION • VOL. 4</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">THE NEBULA</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">ALCHEMIST</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">RIN TAKAHASHI</text>
+</svg>

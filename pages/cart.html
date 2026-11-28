@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="My Cart — Review your selected comics, manga, and illustrated editions, adjust quantities, and proceed to checkout at Multiverse Vault.">
+  <title>My Cart | Multiverse Vault</title>
+
+  <!-- Google Fonts (Cinzel + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets (Subpage Relative Paths: ../) -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <!-- Page 6 Stylesheet -->
+  <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+  <!-- ==================== SHARED HEADER (SUBPAGE) ==================== -->
+  <header class="site-header">
+    <div class="mv-container navbar">
+      <a href="../index.html" class="brand">
+        <img src="../images/logo-crest.svg" alt="" class="brand-logo-img" width="40" height="40" aria-hidden="true">
+        <span class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
+          <li><a href="deals.html" class="nav-link">Deals</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="my-library.html" class="nav-action-link">My Library</a>
+          <a href="wishlist.html" class="nav-action-link">Wishlist</a>
+          <a href="cart.html" class="nav-action-link">
+            Cart <span id="nav-cart-count" class="cart-count">0</span>
+          </a>
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== MY CART CONTENT ==================== -->
+  <main>
+    <!-- 1. Page Title Banner -->
+    <section class="cart-hero" aria-labelledby="cart-heading">
+      <div class="mv-container cart-hero-inner">
+        <div>
+          <span class="mv-badge mv-badge-gold">Vault Acquisition</span>
+          <h1 id="cart-heading" class="cart-hero-title">MY CART</h1>
+          <p class="cart-hero-subtitle">
+            Review your chosen editions, adjust quantities, and prepare your parcel for dispatch from the Vault.
+          </p>
+        </div>
+        <div class="cart-hero-meta" aria-live="polite">
+          <span id="cart-item-count-label" class="cart-count-pill">3 Items in Cart</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Main Two-Column Cart Layout -->
+    <section class="mv-section" aria-label="Shopping Cart Details">
+      <div class="mv-container cart-layout">
+        <!-- Left Column: Cart Items List -->
+        <div class="cart-items-col">
+          <div id="cart-items-list" class="cart-items-list" aria-live="polite">
+            <!-- Rendered by js/cart.js -->
+          </div>
+
+          <div id="cart-empty-state" class="cart-empty-state" hidden>
+            <h2>Your Vault Cart Is Empty</h2>
+            <p>
+              No volumes are currently reserved in your cart. Explore our newest releases or add one of the recommended titles below.
+            </p>
+            <div class="cart-empty-actions">
+              <a href="new-releases.html" class="btn btn-gold">Browse New Releases</a>
+              <button type="button" id="restore-sample-cart-btn" class="btn btn-outline">Restore Sample Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Order Summary Box -->
+        <aside class="cart-summary-col" aria-labelledby="summary-heading">
+          <div class="cart-summary-card">
+            <h2 id="summary-heading" class="cart-summary-title">ORDER SUMMARY</h2>
+
+            <div class="cart-summary-rows">
+              <div class="cart-summary-row">
+                <span>Subtotal (<span id="summary-items-count">0</span> items)</span>
+                <strong id="summary-subtotal">$0.00</strong>
+              </div>
+              <div class="cart-summary-row">
+                <span>Shipping</span>
+                <strong id="summary-shipping">$4.99</strong>
+              </div>
+              <p class="cart-shipping-note" id="summary-shipping-note">
+                Free Vault shipping on orders over $50.00.
+              </p>
+            </div>
+
+            <hr class="mv-divider">
+
+            <div class="cart-summary-total">
+              <span>Total</span>
+              <strong id="summary-total">$0.00</strong>
+            </div>
+
+            <div class="cart-summary-actions">
+              <button type="button" id="checkout-btn" class="btn btn-gold btn-lg cart-btn-full">
+                Checkout
+              </button>
+              <a href="new-releases.html" class="btn btn-outline cart-btn-full">
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 3. Bottom Section: You May Also Like -->
+    <section class="mv-section cart-recommend-section" aria-labelledby="recommend-heading">
+      <div class="mv-container">
+        <div class="mv-section-header">
+          <span class="mv-badge mv-badge-gold">Curated Picks</span>
+          <h2 id="recommend-heading" style="margin-top: 0.75rem;">YOU MAY ALSO LIKE</h2>
+          <p>Handpicked comics, manga, and illustrated volumes to pair with your order.</p>
+        </div>
+
+        <div id="recommended-grid" class="mv-grid-4 cart-recommend-grid">
+          <!-- Rendered by js/cart.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Checkout Confirmation Modal -->
+  <div id="checkout-modal" class="cart-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title" hidden>
+    <div class="cart-modal-backdrop" data-close-modal></div>
+    <div class="cart-modal-dialog">
+      <span class="mv-badge mv-badge-gold">Order Confirmed</span>
+      <h2 id="checkout-modal-title" class="cart-modal-title">Thank You for Your Vault Order!</h2>
+      <p id="checkout-modal-summary" class="cart-modal-text"></p>
+      <div class="cart-modal-actions">
+        <button type="button" id="confirm-clear-cart-btn" class="btn btn-gold">Complete &amp; Clear Cart</button>
+        <button type="button" class="btn btn-outline" data-close-modal>Keep Browsing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="cart-toast" class="cart-toast" role="status" aria-live="polite"></div>
+
+  <!-- ==================== SHARED FOOTER (SUBPAGE) ==================== -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand">
+            <img src="../images/logo-crest.svg" alt="" class="brand-logo-img" width="40" height="40" aria-hidden="true">
+            <span class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </span>
+          </a>
+          <p>
+            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Discover</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="explore.html">Explore Catalog</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="reviews.html">Reader Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Your Vault</h3>
+          <ul class="footer-links">
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Guild &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared Script (Subpage Relative Path: ../) -->
+  <script src="../js/main.js"></script>
+  <!-- Page 6 Script -->
+  <script src="../js/cart.js"></script>
+</body>
+</html>

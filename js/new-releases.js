@@ -10,8 +10,7 @@
   const ALERTS_KEY = 'mv_release_alerts';
 
   // Demo catalog data for New Releases (local demo dataset)
-  // Images: existing shared project assets are used. aiGenerated:false for all existing images.
-  // Cross-category image rotation ensures distinct visuals per card even within the same category.
+  // Each book has its own unique custom SVG cover in ../images/.
   const RELEASES = [
     {
       id: 'astral-sovereign-1',
@@ -27,8 +26,8 @@
       releaseDate: '2026-11-24',
       displayDate: 'Nov 24, 2026',
       price: 28.99,
-      image: '../images/category-comics.jpg',
-      imageAlt: 'A cloaked star-knight stands before a fractured citadel, gold energy arcs illuminating the midnight sky',
+      image: '../images/cover-astral-sovereign-v1.svg',
+      imageAlt: 'Astral Sovereign: Crown of the Ninth Veil, Vol. 1 cover artwork',
       aiGenerated: false,
       description: 'An exiled star-knight returns to a fractured citadel to reclaim a stolen celestial mantle before the eclipse ends.',
       featured: true
@@ -47,8 +46,8 @@
       releaseDate: '2026-11-25',
       displayDate: 'Nov 25, 2026',
       price: 14.99,
-      image: '../images/category-manga.jpg',
-      imageAlt: 'A misty torii gate glowing beneath a golden crescent moon with stone shrine steps receding into fog',
+      image: '../images/cover-torii-eclipse-v7.svg',
+      imageAlt: 'Lanterns Beneath the Crescent Torii, Vol. 7 cover artwork',
       aiGenerated: false,
       description: 'A wandering spirit-scribe climbs the mist-shrouded shrine steps where forgotten vows awaken under the moon.',
       featured: false
@@ -67,8 +66,8 @@
       releaseDate: '2026-11-26',
       displayDate: 'Nov 26, 2026',
       price: 34.50,
-      image: '../images/category-webtoons.jpg',
-      imageAlt: 'An illuminated open storybook radiating golden stardust beside a glowing crystalline scroll on a dark surface',
+      image: '../images/cover-celestial-herbarium.svg',
+      imageAlt: 'The Celestial Herbarium: Illuminated Omnibus cover artwork',
       aiGenerated: false,
       description: 'Botanical arcana meets full-color painted lore in a collector hardcover gathering Seasons 1 and 2.',
       featured: false
@@ -87,8 +86,8 @@
       releaseDate: '2026-11-18',
       displayDate: 'Nov 18, 2026',
       price: 9.99,
-      image: '../images/hero-vault.jpg',
-      imageAlt: 'An ornate arcane library vault lined floor-to-ceiling with comics, manga, and illustrated tomes in midnight-purple and antique-gold',
+      image: '../images/cover-obsidian-vault-01.svg',
+      imageAlt: 'Chronicles of the Obsidian Vault, Issue #1 cover artwork',
       aiGenerated: false,
       description: 'When an apprentice archivist opens a sealed folio, five parallel worlds bleed into the midnight stacks.',
       featured: false
@@ -107,8 +106,8 @@
       releaseDate: '2026-11-12',
       displayDate: 'Nov 12, 2026',
       price: 13.50,
-      image: '../images/category-comics.jpg',
-      imageAlt: 'Two warriors face off in a storm-lit arena, crimson cursed-seal energy arcing between crossed blades',
+      image: '../images/cover-ashen-pagoda-v12.svg',
+      imageAlt: 'Blade of the Ashen Pagoda, Vol. 12 cover artwork',
       aiGenerated: false,
       description: 'The mountain tournament reaches its final duel as old allies confront the curse of the crimson seal.',
       featured: false
@@ -127,8 +126,8 @@
       releaseDate: '2026-11-08',
       displayDate: 'Nov 08, 2026',
       price: 21.00,
-      image: '../images/hero-vault.jpg',
-      imageAlt: 'A grand arcane library of towering shelves holds luminous scrolls and illustrated volumes in purple and gold',
+      image: '../images/cover-starlight-scroll-s3.svg',
+      imageAlt: 'Starlight Scroll of Aethelgard, Season 3 Print cover artwork',
       aiGenerated: false,
       description: 'Adapted from the hit vertical-scroll fantasy series with 18 pages of exclusive concept sketches.',
       featured: false
@@ -147,8 +146,8 @@
       releaseDate: '2026-12-10',
       displayDate: 'Dec 10, 2026',
       price: 44.00,
-      image: '../images/category-webtoons.jpg',
-      imageAlt: 'A hero at the centre of a swirling golden interdimensional storm, luminous pages spiralling through the rift',
+      image: '../images/cover-riftwalker-omnibus.svg',
+      imageAlt: 'Riftwalker: Golden Tempest Omnibus cover artwork',
       aiGenerated: false,
       description: 'Reserve the oversized 400-page slipcase edition collecting the entire Riftwalker multiverse arc.',
       featured: false
@@ -167,8 +166,8 @@
       releaseDate: '2026-12-15',
       displayDate: 'Dec 15, 2026',
       price: 16.50,
-      image: '../images/category-manga.jpg',
-      imageAlt: 'A lone cartographer on a fog-covered mountain ridge, a forgotten shrine barely visible in the pale sunrise below',
+      image: '../images/cover-moonlit-pilgrim-v1.svg',
+      imageAlt: 'Pilgrim of the Silent Ridge, Vol. 1 cover artwork',
       aiGenerated: false,
       description: 'A quiet, atmospheric seinen debut following a cartographer mapping vanished shrines across misty peaks.',
       featured: false
@@ -187,8 +186,8 @@
       releaseDate: '2026-12-22',
       displayDate: 'Dec 22, 2026',
       price: 39.99,
-      image: '../images/category-comics.jpg',
-      imageAlt: 'An elaborate gold-embossed collector hardcover on an arcane pedestal, surrounded by floating illustrated plates',
+      image: '../images/cover-vault-compendium.svg',
+      imageAlt: 'Grand Vault Lorebook & Art Compendium cover artwork',
       aiGenerated: false,
       description: 'Illustrated maps, worldbuilding essays, and annotated plates from our flagship fantasy creators.',
       featured: false

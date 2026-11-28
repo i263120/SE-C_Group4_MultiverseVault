@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="clkBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101829"/>
+      <stop offset="55%" stop-color="#232042"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#clkBg)"/>
+  <!-- Giant Brass Clockwork Gears -->
+  <circle cx="300" cy="340" r="140" fill="none" stroke="#d4af37" stroke-width="8" stroke-dasharray="18 12"/>
+  <circle cx="300" cy="340" r="105" fill="#18122b" stroke="#ebd074" stroke-width="3"/>
+  <circle cx="300" cy="340" r="65" fill="none" stroke="#6cc8e0" stroke-width="2" stroke-opacity="0.7"/>
+  <!-- Clocktower Hands & Spire -->
+  <line x1="300" y1="340" x2="300" y2="250" stroke="#ebd074" stroke-width="5" stroke-linecap="round"/>
+  <line x1="300" y1="340" x2="368" y2="375" stroke="#ebd074" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="300" cy="340" r="11" fill="#6cc8e0"/>
+  <polygon points="270,560 300,450 330,560" fill="#120b1e" stroke="#d4af37" stroke-width="2"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">STEAMPUNK COMIC • ISSUE #1</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">CLOCKWORK CITADEL</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="22" letter-spacing="4">BRASS &amp; AETHER</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">CLARA MOREAU</text>
+</svg>

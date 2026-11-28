@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="roninBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0912"/>
+      <stop offset="55%" stop-color="#381121"/>
+      <stop offset="100%" stop-color="#120b1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#roninBg)"/>
+  <circle cx="300" cy="285" r="128" fill="#c42b3b"/>
+  <circle cx="300" cy="285" r="98" fill="#160812"/>
+  <circle cx="300" cy="285" r="134" fill="none" stroke="#ebd074" stroke-width="2" stroke-opacity="0.7"/>
+  <!-- Katana Slash Arc -->
+  <path d="M135 420 Q300 265 470 195" fill="none" stroke="#f5efe0" stroke-width="5" stroke-linecap="round"/>
+  <path d="M135 425 Q300 272 470 202" fill="none" stroke="#ebd074" stroke-width="2" stroke-linecap="round"/>
+  <!-- Bamboo Silhouettes -->
+  <g stroke="#0c050d" stroke-width="10">
+    <line x1="110" y1="120" x2="125" y2="600"/>
+    <line x1="485" y1="140" x2="470" y2="600"/>
+  </g>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">DARK FANTASY MANGA • VOL. 3</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="32" font-weight="bold" letter-spacing="3">ECLIPSE RONIN</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="22" letter-spacing="4">BLOODMOON BLADES</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">KENJIRO SATO</text>
+</svg>

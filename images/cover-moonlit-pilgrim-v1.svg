@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="ridgeSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14132e"/>
+      <stop offset="55%" stop-color="#3a2c54"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="#120b1e"/>
+  <rect x="24" y="24" width="552" height="580" rx="10" fill="url(#ridgeSky)"/>
+  <!-- Pale Sunrise -->
+  <circle cx="300" cy="410" r="85" fill="#ebd074" opacity="0.55"/>
+  <!-- Mountain Ridges -->
+  <path d="M24 440 L160 320 L290 420 L420 290 L576 430 L576 604 L24 604 Z" fill="#1d1433"/>
+  <path d="M24 500 L195 395 L340 480 L470 385 L576 490 L576 604 L24 604 Z" fill="#120b1e"/>
+  <!-- Pilgrim Silhouette on Ridge -->
+  <circle cx="195" cy="368" r="9" fill="#f5efe0"/>
+  <path d="M182 400 L195 378 L208 400 Z" fill="#f5efe0"/>
+  <line x1="210" y1="365" x2="215" y2="404" stroke="#ebd074" stroke-width="2.5"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#d4af37" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="300" y="88" text-anchor="middle" fill="#ebd074" font-family="Georgia, serif" font-size="18" letter-spacing="5">PRE-ORDER • VOLUME 1</text>
+  <text x="300" y="676" text-anchor="middle" fill="#f5efe0" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="2">PILGRIM OF THE</text>
+  <text x="300" y="714" text-anchor="middle" fill="#d4af37" font-family="Georgia, serif" font-size="24" letter-spacing="4">SILENT RIDGE</text>
+  <text x="300" y="750" text-anchor="middle" fill="#c4b7d4" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">AOI NISHIMURA</text>
+</svg>
