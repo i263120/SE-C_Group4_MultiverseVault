@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enter your delivery address and choose a payment method to complete your Multiverse Vault order.">
+  <title>Checkout | Multiverse Vault</title>
+
+  <!-- Google Fonts (Cinzel + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets (Subpage Relative Paths: ../) -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Checkout Page Layout Styles (Uses shared CSS variables from css/style.css) -->
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .checkout-hero {
+      padding: var(--space-5) 0 var(--space-4);
+      border-bottom: 1px solid var(--border-gold);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(212, 175, 55, 0.1), transparent 45%),
+        radial-gradient(circle at 82% 30%, rgba(92, 52, 150, 0.25), transparent 55%);
+    }
+
+    .checkout-steps {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: var(--space-2);
+      font-size: var(--fs-sm);
+    }
+
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-gold);
+      color: var(--text-muted);
+      background-color: var(--bg-surface);
+    }
+
+    .step-pill.is-active {
+      border-color: var(--gold-primary);
+      background-color: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .step-pill.is-done:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+    }
+
+    .checkout-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .checkout-header-row p {
+      margin-top: 0.45rem;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .checkout-form-card:hover,
+    .checkout-summary-card:hover,
+    .checkout-state-card:hover {
+      transform: none;
+    }
+
+    .checkout-section-block {
+      margin-bottom: var(--space-4);
+    }
+
+    .checkout-section-block:last-of-type {
+      margin-bottom: var(--space-3);
+    }
+
+    .checkout-block-title {
+      font-size: var(--fs-lg);
+      color: var(--gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .checkout-block-sub {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-2);
+    }
+
+    .required-mark {
+      color: var(--gold-light);
+    }
+
+    .mv-input.is-invalid,
+    .mv-select.is-invalid,
+    .mv-textarea.is-invalid {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.18);
+    }
+
+    .field-error {
+      font-size: var(--fs-xs);
+      color: #ffb3b0;
+    }
+
+    .form-alert {
+      margin-bottom: var(--space-3);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      background-color: rgba(217, 83, 79, 0.16);
+      border: 1px solid rgba(217, 83, 79, 0.55);
+      color: #ffb3b0;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+    }
+
+    /* Radio Choice Cards (Delivery & Payment) */
+    .choice-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: var(--space-2);
+      background-color: var(--bg-vault);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color var(--transition), background-color var(--transition);
+    }
+
+    .choice-card:hover {
+      border-color: var(--border-gold-strong);
+    }
+
+    .choice-card.is-selected {
+      border-color: var(--gold-primary);
+      background-color: rgba(212, 175, 55, 0.08);
+    }
+
+    .choice-card input[type="radio"] {
+      margin-top: 0.25rem;
+      accent-color: var(--gold-primary);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .choice-body {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .choice-title {
+      display: block;
+      font-weight: 600;
+      color: var(--text-cream);
+      font-size: var(--fs-sm);
+    }
+
+    .choice-desc {
+      display: block;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .choice-price {
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+
+    .payment-subpanel {
+      margin-top: var(--space-2);
+      padding: var(--space-2);
+      background-color: var(--bg-vault);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+    }
+
+    .payment-note {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    /* Order Summary Sidebar */
+    .checkout-summary-card {
+      position: sticky;
+      top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .checkout-summary-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: var(--space-2) 0 var(--space-3);
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+    }
+
+    .checkout-summary-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .checkout-summary-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .checkout-item-thumb {
+      width: 48px;
+      flex-shrink: 0;
+      aspect-ratio: 18 / 25;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      background-color: var(--bg-elevated);
+    }
+
+    .checkout-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .checkout-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .checkout-item-title {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-cream);
+      line-height: 1.3;
+    }
+
+    .checkout-item-price {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+
+    .checkout-promo-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .checkout-promo-row .mv-input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mv-feedback {
+      margin-bottom: var(--space-2);
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: var(--fs-xs);
+      font-weight: 500;
+    }
+
+    .mv-feedback.is-success {
+      background-color: rgba(63, 163, 112, 0.16);
+      border: 1px solid rgba(63, 163, 112, 0.5);
+      color: #a8e6c5;
+    }
+
+    .mv-feedback.is-error {
+      background-color: rgba(217, 83, 79, 0.16);
+      border: 1px solid rgba(217, 83, 79, 0.55);
+      color: #ffb3b0;
+    }
+
+    .summary-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--border-gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    .summary-row strong {
+      color: var(--text-cream);
+    }
+
+    .summary-row.is-discount strong {
+      color: #8ee0b5;
+    }
+
+    .summary-total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--border-gold-strong);
+      margin-bottom: var(--space-3);
+    }
+
+    .summary-total-label {
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      color: var(--text-cream);
+    }
+
+    .summary-total-value {
+      font-family: var(--font-heading);
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .summary-submit-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Empty & Submitted States */
+    .checkout-state-card {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-4);
+      text-align: center;
+    }
+
+    .checkout-state-card p {
+      max-width: 52ch;
+      margin: var(--space-1) auto var(--space-3);
+    }
+
+    .submitted-details {
+      text-align: left;
+      margin: var(--space-3) 0;
+      padding: var(--space-3);
+      background-color: var(--bg-vault);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      display: grid;
+      gap: 0.65rem;
+      font-size: var(--fs-sm);
+    }
+
+    .submitted-details-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .submitted-details-row span {
+      color: var(--text-muted);
+    }
+
+    .submitted-details-row strong {
+      color: var(--text-cream);
+    }
+
+    .state-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    @media (max-width: 1024px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-promo-row {
+        flex-direction: column;
+      }
+
+      .checkout-state-card {
+        padding: var(--space-4) var(--space-3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ==================== SHARED HEADER (SUBPAGE) ==================== -->
+  <header class="site-header">
+    <div class="mv-container navbar">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">MV</span>
+        <span class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
+          <li><a href="deals.html" class="nav-link">Deals</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="my-library.html" class="nav-action-link">My Library</a>
+          <a href="wishlist.html" class="nav-action-link">Wishlist</a>
+          <a href="cart.html" class="nav-action-link">
+            Cart <span id="nav-cart-count" class="cart-count">0</span>
+          </a>
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== CHECKOUT PAGE CONTENT ==================== -->
+  <main id="checkout-page">
+    <section class="checkout-hero">
+      <div class="mv-container">
+        <div class="checkout-steps" aria-label="Checkout progress">
+          <a href="cart.html" class="step-pill is-done">1. Cart</a>
+          <span aria-hidden="true">&rarr;</span>
+          <span id="step-checkout-pill" class="step-pill is-active" aria-current="step">2. Checkout</span>
+          <span aria-hidden="true">&rarr;</span>
+          <span id="step-confirmed-pill" class="step-pill">3. Confirmed</span>
+        </div>
+
+        <div class="checkout-header-row">
+          <div>
+            <span class="mv-badge mv-badge-gold">Vault Dispatch</span>
+            <h1 style="margin-top: 0.6rem;">Checkout</h1>
+            <p>Provide your delivery address and choose how you would like to pay for your volumes.</p>
+          </div>
+          <a href="cart.html" class="btn btn-outline btn-sm">&larr; Back to Cart</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mv-section">
+      <div class="mv-container">
+        <!-- Empty Cart Guard -->
+        <div id="checkout-empty-state" class="mv-card checkout-state-card" hidden>
+          <span class="mv-badge mv-badge-gold">Cart Empty</span>
+          <h2 style="margin-top: 0.75rem;">No Items Ready for Checkout</h2>
+          <p>
+            Your shopping cart is currently empty. Add titles from the catalog or load sample books to test the checkout form.
+          </p>
+          <div class="state-actions">
+            <a href="cart.html" class="btn btn-gold">Go to Cart</a>
+            <a href="explore.html" class="btn btn-outline">Explore Catalog</a>
+            <button type="button" id="checkout-load-sample-btn" class="btn btn-ghost">Load Sample Items</button>
+          </div>
+        </div>
+
+        <!-- Post-Submission Notice (before Order Confirmation page is built) -->
+        <div id="checkout-submitted-panel" class="mv-card checkout-state-card" hidden>
+          <span class="mv-badge mv-badge-gold">Order Recorded</span>
+          <h2 style="margin-top: 0.75rem;">Thank You! Your Vault Order Is Placed</h2>
+          <p>
+            Your delivery details and payment selection have been saved. Your order confirmation summary is ready.
+          </p>
+
+          <div class="submitted-details">
+            <div class="submitted-details-row">
+              <span>Order Number</span>
+              <strong id="submitted-order-number">MV-2026-00000</strong>
+            </div>
+            <div class="submitted-details-row">
+              <span>Confirmation Sent To</span>
+              <strong id="submitted-order-email">-</strong>
+            </div>
+            <div class="submitted-details-row">
+              <span>Deliver To</span>
+              <strong id="submitted-order-address">-</strong>
+            </div>
+            <div class="submitted-details-row">
+              <span>Payment Method</span>
+              <strong id="submitted-order-payment">-</strong>
+            </div>
+            <div class="submitted-details-row">
+              <span>Total Charged</span>
+              <strong id="submitted-order-total" class="text-gold">$0.00</strong>
+            </div>
+          </div>
+
+          <div class="state-actions">
+            <a href="explore.html" class="btn btn-gold">Continue Shopping</a>
+            <a href="../index.html" class="btn btn-outline">Return to Home</a>
+          </div>
+        </div>
+
+        <!-- Main Checkout Grid -->
+        <div id="checkout-grid" class="checkout-layout">
+          <form id="checkout-form" class="mv-card checkout-form-card" novalidate>
+            <div class="mv-card-body">
+              <div id="checkout-form-alert" class="form-alert" role="alert" hidden></div>
+
+              <!-- 1. Delivery Address Form -->
+              <div class="checkout-section-block">
+                <h2 class="checkout-block-title">1. Contact &amp; Delivery Address</h2>
+                <p class="checkout-block-sub">Fields marked with <span class="required-mark">*</span> are required for courier dispatch.</p>
+
+                <div class="form-row-2">
+                  <div class="mv-form-group">
+                    <label for="full-name" class="mv-label">Full Name <span class="required-mark">*</span></label>
+                    <input type="text" id="full-name" name="fullName" class="mv-input" placeholder="e.g. Rayyan Rashid" autocomplete="name" required>
+                    <span id="full-name-error" class="field-error" hidden></span>
+                  </div>
+
+                  <div class="mv-form-group">
+                    <label for="email" class="mv-label">Email Address <span class="required-mark">*</span></label>
+                    <input type="email" id="email" name="email" class="mv-input" placeholder="reader@example.com" autocomplete="email" required>
+                    <span id="email-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="mv-form-group">
+                    <label for="phone" class="mv-label">Phone Number <span class="required-mark">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="mv-input" placeholder="+92 300 1234567" autocomplete="tel" required>
+                    <span id="phone-error" class="field-error" hidden></span>
+                  </div>
+
+                  <div class="mv-form-group">
+                    <label for="country" class="mv-label">Country <span class="required-mark">*</span></label>
+                    <select id="country" name="country" class="mv-select" autocomplete="country-name" required>
+                      <option value="">Select country</option>
+                      <option value="Pakistan" selected>Pakistan</option>
+                      <option value="United States">United States</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Canada">Canada</option>
+                      <option value="United Arab Emirates">United Arab Emirates</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <span id="country-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="mv-form-group">
+                  <label for="street-address" class="mv-label">Street Address <span class="required-mark">*</span></label>
+                  <input type="text" id="street-address" name="streetAddress" class="mv-input" placeholder="House / Street / Sector" autocomplete="street-address" required>
+                  <span id="street-address-error" class="field-error" hidden></span>
+                </div>
+
+                <div class="mv-form-group">
+                  <label for="apartment" class="mv-label">Apartment, Suite, or Landmark (Optional)</label>
+                  <input type="text" id="apartment" name="apartment" class="mv-input" placeholder="Floor, suite, or nearby landmark" autocomplete="address-line2">
+                </div>
+
+                <div class="form-row-2">
+                  <div class="mv-form-group">
+                    <label for="city" class="mv-label">City <span class="required-mark">*</span></label>
+                    <input type="text" id="city" name="city" class="mv-input" placeholder="e.g. Islamabad" autocomplete="address-level2" required>
+                    <span id="city-error" class="field-error" hidden></span>
+                  </div>
+
+                  <div class="mv-form-group">
+                    <label for="postal-code" class="mv-label">Postal / ZIP Code <span class="required-mark">*</span></label>
+                    <input type="text" id="postal-code" name="postalCode" class="mv-input" placeholder="e.g. 44000" autocomplete="postal-code" required>
+                    <span id="postal-code-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="mv-form-group">
+                  <label for="delivery-notes" class="mv-label">Delivery Instructions (Optional)</label>
+                  <textarea id="delivery-notes" name="deliveryNotes" class="mv-textarea" rows="2" placeholder="Gate code, preferred delivery time, or protective packaging request"></textarea>
+                </div>
+              </div>
+
+              <hr class="mv-divider">
+
+              <!-- 2. Delivery Speed -->
+              <div class="checkout-section-block">
+                <h2 class="checkout-block-title">2. Delivery Speed</h2>
+                <p class="checkout-block-sub">Orders over $50.00 or using FREESHIP receive complimentary Standard Vault Courier delivery.</p>
+
+                <div class="choice-group">
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="deliveryMethod" value="standard" checked>
+                    <span class="choice-body">
+                      <span>
+                        <span class="choice-title">Standard Vault Courier</span>
+                        <span class="choice-desc">Tracked parcel delivery in 4&ndash;6 business days</span>
+                      </span>
+                      <span id="standard-shipping-price" class="choice-price">$4.99</span>
+                    </span>
+                  </label>
+
+                  <label class="choice-card">
+                    <input type="radio" name="deliveryMethod" value="express">
+                    <span class="choice-body">
+                      <span>
+                        <span class="choice-title">Express Arcane Post</span>
+                        <span class="choice-desc">Priority protective mailer in 1&ndash;2 business days</span>
+                      </span>
+                      <span class="choice-price">$12.99</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <hr class="mv-divider">
+
+              <!-- 3. Payment Choice -->
+              <div class="checkout-section-block">
+                <h2 class="checkout-block-title">3. Payment Choice</h2>
+                <p class="checkout-block-sub">Select your preferred payment method for this order.</p>
+
+                <div class="choice-group">
+                  <label class="choice-card is-selected">
+                    <input type="radio" name="paymentMethod" value="card" checked>
+                    <span class="choice-body">
+                      <span>
+                        <span class="choice-title">Credit / Debit Card</span>
+                        <span class="choice-desc">Visa, Mastercard, or UnionPay card payment</span>
+                      </span>
+                      <span class="choice-price">Instant</span>
+                    </span>
+                  </label>
+
+                  <label class="choice-card">
+                    <input type="radio" name="paymentMethod" value="cod">
+                    <span class="choice-body">
+                      <span>
+                        <span class="choice-title">Cash on Delivery</span>
+                        <span class="choice-desc">Pay directly when your physical books arrive</span>
+                      </span>
+                      <span class="choice-price">No Fee</span>
+                    </span>
+                  </label>
+
+                  <label class="choice-card">
+                    <input type="radio" name="paymentMethod" value="wallet">
+                    <span class="choice-body">
+                      <span>
+                        <span class="choice-title">Vault Wallet / Digital Pay</span>
+                        <span class="choice-desc">Pay via mobile wallet ID (JazzCash, EasyPaisa, or Vault Credit)</span>
+                      </span>
+                      <span class="choice-price">Digital</span>
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Card Fields -->
+                <div id="payment-card-fields" class="payment-subpanel">
+                  <div class="mv-form-group">
+                    <label for="card-name" class="mv-label">Cardholder Name <span class="required-mark">*</span></label>
+                    <input type="text" id="card-name" class="mv-input" placeholder="Name printed on card" autocomplete="cc-name">
+                    <span id="card-name-error" class="field-error" hidden></span>
+                  </div>
+
+                  <div class="mv-form-group">
+                    <label for="card-number" class="mv-label">Card Number <span class="required-mark">*</span></label>
+                    <input type="text" id="card-number" class="mv-input" placeholder="4242 4242 4242 4242" inputmode="numeric" maxlength="19" autocomplete="cc-number">
+                    <span id="card-number-error" class="field-error" hidden></span>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div class="mv-form-group" style="margin-bottom: 0;">
+                      <label for="card-expiry" class="mv-label">Expiry Date <span class="required-mark">*</span></label>
+                      <input type="text" id="card-expiry" class="mv-input" placeholder="MM/YY" inputmode="numeric" maxlength="5" autocomplete="cc-exp">
+                      <span id="card-expiry-error" class="field-error" hidden></span>
+                    </div>
+
+                    <div class="mv-form-group" style="margin-bottom: 0;">
+                      <label for="card-cvv" class="mv-label">CVV <span class="required-mark">*</span></label>
+                      <input type="password" id="card-cvv" class="mv-input" placeholder="123" inputmode="numeric" maxlength="4" autocomplete="cc-csc">
+                      <span id="card-cvv-error" class="field-error" hidden></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cash on Delivery Note -->
+                <div id="payment-cod-note" class="payment-subpanel" hidden>
+                  <p class="payment-note">
+                    Cash on Delivery selected. Please keep the exact order total ready for our courier upon parcel arrival.
+                  </p>
+                </div>
+
+                <!-- Digital Wallet Input -->
+                <div id="payment-wallet-fields" class="payment-subpanel" hidden>
+                  <div class="mv-form-group" style="margin-bottom: 0;">
+                    <label for="wallet-handle" class="mv-label">Wallet Account / Mobile Number <span class="required-mark">*</span></label>
+                    <input type="text" id="wallet-handle" class="mv-input" placeholder="e.g. 0300-1234567 or @vault-id">
+                    <span id="wallet-handle-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <!-- Order Summary Sidebar -->
+          <aside class="mv-card checkout-summary-card" aria-label="Checkout Order Summary">
+            <div class="mv-card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+                <h2 class="mv-card-title" style="margin-bottom: 0;">Order Summary</h2>
+                <a href="cart.html" class="btn btn-ghost btn-sm">Edit Cart</a>
+              </div>
+
+              <ul id="checkout-summary-items" class="checkout-summary-items"></ul>
+
+              <div class="checkout-promo-row">
+                <input type="text" id="checkout-promo-input" class="mv-input" placeholder="Promo code (e.g. VAULT10)" aria-label="Promo code">
+                <button type="button" id="checkout-promo-apply" class="btn btn-outline btn-sm">Apply</button>
+              </div>
+              <p id="checkout-promo-feedback" class="mv-feedback" role="status" hidden></p>
+
+              <div class="summary-rows">
+                <div class="summary-row">
+                  <span>Subtotal</span>
+                  <strong id="checkout-subtotal">$0.00</strong>
+                </div>
+                <div id="checkout-discount-row" class="summary-row is-discount" hidden>
+                  <span>Discount (<span id="checkout-discount-code"></span>)</span>
+                  <strong id="checkout-discount">−$0.00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Shipping</span>
+                  <strong id="checkout-shipping">$0.00</strong>
+                </div>
+              </div>
+
+              <div class="summary-total-row">
+                <span class="summary-total-label">Order Total</span>
+                <span id="checkout-total" class="summary-total-value">$0.00</span>
+              </div>
+
+              <div class="summary-submit-actions">
+                <button type="submit" form="checkout-form" id="place-order-btn" class="btn btn-gold btn-lg btn-block-mobile">
+                  Place Order &rarr;
+                </button>
+                <a href="cart.html" class="btn btn-outline btn-block-mobile">Return to Cart</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SHARED FOOTER (SUBPAGE) ==================== -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">MV</span>
+            <span class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </span>
+          </a>
+          <p>
+            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Discover</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="explore.html">Explore Catalog</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="reviews.html">Reader Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Your Vault</h3>
+          <ul class="footer-links">
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Guild &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared & Cart Scripts (Subpage Relative Paths: ../) -->
+  <script src="../js/main.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>
