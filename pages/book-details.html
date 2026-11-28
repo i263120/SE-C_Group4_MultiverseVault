@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Book Details | Multiverse Vault</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Shared design system -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+  <style>
+    /* =====================================================
+       BOOK DETAILS – page-specific styles only
+       All shared tokens come from css/style.css
+    ===================================================== */
+
+    /* ── Breadcrumb ── */
+    .bd-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: var(--space-3, 1.5rem);
+      font-size: var(--fs-sm, 0.875rem);
+      color: var(--text-muted, #c4b7d4);
+    }
+    .bd-breadcrumb a {
+      color: var(--gold-primary, #d4af37);
+      text-decoration: none;
+      transition: color var(--transition, 0.25s ease);
+    }
+    .bd-breadcrumb a:hover { color: var(--gold-light, #ebd074); }
+    .bd-breadcrumb-sep { opacity: 0.5; }
+
+    /* ── Page title ── */
+    .bd-page-title {
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text-cream, #f5efe0);
+      margin: 0 0 var(--space-2, 1rem);
+      line-height: 1.2;
+    }
+
+    /* ── Two-column layout ── */
+    .bd-layout {
+      display: grid;
+      grid-template-columns: 0.4fr 0.6fr;
+      gap: var(--space-5, 2.5rem);
+      align-items: start;
+    }
+
+    /* ── Cover column ── */
+    .bd-cover-col { display: flex; flex-direction: column; gap: var(--space-3, 1.5rem); }
+
+    .bd-cover-figure { margin: 0; }
+
+    .bd-cover-img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: var(--radius-md, 0.75rem);
+      border: 2px solid var(--border-gold-strong, rgba(212,175,55,0.65));
+      box-shadow: var(--shadow-card, 0 10px 28px rgba(5,2,12,0.45)), var(--shadow-gold, 0 0 18px rgba(212,175,55,0.2));
+      display: block;
+    }
+
+    .bd-cover-fallback {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      border-radius: var(--radius-md, 0.75rem);
+      border: 2px solid var(--border-gold-strong, rgba(212,175,55,0.65));
+      background: var(--bg-elevated, #25183c);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--text-muted, #c4b7d4);
+      font-size: 0.85rem;
+    }
+    .bd-cover-fallback svg { opacity: 0.4; }
+
+    .ai-credit {
+      font-style: italic;
+      font-size: var(--fs-xs, 0.75rem);
+      color: var(--text-muted, #c4b7d4);
+      margin: 0.5rem 0 0;
+      text-align: center;
+    }
+
+    /* ── Meta column ── */
+    .bd-meta-col { display: flex; flex-direction: column; gap: var(--space-3, 1.5rem); }
+
+    .bd-meta-title {
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text-cream, #f5efe0);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .bd-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2, 1rem) var(--space-4, 2rem);
+    }
+    .bd-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .bd-meta-label {
+      font-size: var(--fs-xs, 0.75rem);
+      color: var(--text-muted, #c4b7d4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .bd-meta-value {
+      font-size: var(--fs-sm, 0.875rem);
+      color: var(--text-cream, #f5efe0);
+    }
+
+    /* ── Stars ── */
+    .bd-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .bd-stars { color: var(--gold-primary, #d4af37); font-size: 1.1rem; letter-spacing: 0.05em; }
+    .bd-rating-num {
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      font-size: 1rem;
+      color: var(--gold-light, #ebd074);
+      font-weight: 600;
+    }
+    .bd-review-count { font-size: var(--fs-xs, 0.75rem); color: var(--text-muted, #c4b7d4); }
+
+    /* ── Description ── */
+    .bd-description {
+      font-size: var(--fs-sm, 0.875rem);
+      color: var(--text-muted, #c4b7d4);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Action rows ── */
+    .bd-actions { display: flex; flex-direction: column; gap: 0; }
+
+    .bd-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3, 1.5rem);
+      padding: var(--space-3, 1.5rem) 0;
+      border-top: 1px solid var(--border-gold, rgba(212,175,55,0.28));
+    }
+    .bd-action-row:last-child { border-bottom: 1px solid var(--border-gold, rgba(212,175,55,0.28)); }
+
+    .bd-price-block { display: flex; flex-direction: column; gap: 0.15rem; }
+    .bd-price-label { font-size: var(--fs-xs, 0.75rem); color: var(--text-muted, #c4b7d4); text-transform: uppercase; letter-spacing: 0.06em; }
+    .bd-price {
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      font-size: 1.25rem;
+      color: var(--gold-light, #ebd074);
+      font-weight: 700;
+    }
+
+    /* ── Tabs ── */
+    .bd-tabs-section { margin-top: var(--space-5, 2.5rem); }
+
+    .bd-tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border-gold, rgba(212,175,55,0.28));
+      margin-bottom: var(--space-4, 2rem);
+    }
+
+    .bd-tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      padding: 0.75rem 1.75rem;
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      font-size: var(--fs-sm, 0.875rem);
+      font-weight: 600;
+      color: var(--text-muted, #c4b7d4);
+      cursor: pointer;
+      transition: color var(--transition, 0.25s ease), border-color var(--transition, 0.25s ease);
+      letter-spacing: 0.04em;
+    }
+    .bd-tab-btn:hover { color: var(--gold-light, #ebd074); }
+    .bd-tab-btn.active {
+      color: var(--gold-primary, #d4af37);
+      border-bottom-color: var(--gold-primary, #d4af37);
+    }
+
+    .bd-tab-panel { display: none; }
+    .bd-tab-panel.active { display: block; }
+
+    .bd-synopsis-text {
+      font-size: var(--fs-base, 1rem);
+      color: var(--text-cream, #f5efe0);
+      line-height: 1.8;
+      max-width: 70ch;
+    }
+
+    .bd-details-table { width: 100%; border-collapse: collapse; }
+    .bd-details-table tr { border-bottom: 1px solid var(--border-gold, rgba(212,175,55,0.28)); }
+    .bd-details-table tr:last-child { border-bottom: none; }
+    .bd-details-table th,
+    .bd-details-table td {
+      padding: 0.75rem 0;
+      font-size: var(--fs-sm, 0.875rem);
+      text-align: left;
+    }
+    .bd-details-table th {
+      width: 40%;
+      color: var(--text-muted, #c4b7d4);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: var(--font-body, 'Plus Jakarta Sans', system-ui, sans-serif);
+    }
+    .bd-details-table td { color: var(--text-cream, #f5efe0); }
+
+    /* ── Toast ── */
+    .mv-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(4rem);
+      background: var(--bg-elevated, #25183c);
+      border: 1px solid var(--border-gold-strong, rgba(212,175,55,0.65));
+      color: var(--text-cream, #f5efe0);
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius-full, 9999px);
+      font-size: var(--fs-sm, 0.875rem);
+      font-weight: 600;
+      box-shadow: var(--shadow-card, 0 10px 28px rgba(5,2,12,0.45));
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .mv-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Not-found state ── */
+    .bd-not-found {
+      text-align: center;
+      padding: var(--space-6, 3rem) 0;
+    }
+    .bd-not-found h2 {
+      font-family: var(--font-heading, 'Cinzel', Georgia, serif);
+      color: var(--text-cream, #f5efe0);
+      margin-bottom: var(--space-2, 1rem);
+    }
+    .bd-not-found p { color: var(--text-muted, #c4b7d4); margin-bottom: var(--space-4, 2rem); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .bd-layout { grid-template-columns: 1fr; }
+      .bd-cover-img, .bd-cover-fallback { max-width: 320px; margin: 0 auto; }
+      .bd-cover-figure { text-align: center; }
+      .bd-meta-grid { grid-template-columns: 1fr; }
+      .bd-action-row { flex-direction: column; align-items: flex-start; gap: var(--space-2, 1rem); }
+      .bd-action-row .btn { width: 100%; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .bd-tab-btn { padding: 0.6rem 1rem; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER / NAVIGATION
+  ════════════════════════════════════════════ -->
+  <header class="site-header">
+    <nav class="navbar mv-container">
+
+      <!-- Brand -->
+      <a href="../index.html" class="brand">
+        <img src="../images/logo.jpg" alt="Multiverse Vault Logo" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </div>
+      </a>
+
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <!-- Nav links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="explore.html" class="nav-link">Explore</a></li>
+        <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
+        <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <!-- Nav actions -->
+      <div class="nav-actions">
+        <a href="wishlist.html" class="nav-action-link" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="nav-action-label">Wishlist</span>
+        </a>
+        <a href="cart.html" class="nav-action-link" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="nav-action-label">Cart</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <a href="login.html" class="nav-action-link btn btn-gold btn-sm" aria-label="Login">Login</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════ -->
+  <main id="bd-main">
+
+    <!-- ── Breadcrumb + Page Title ── -->
+    <section class="mv-section" style="padding-bottom: 0;">
+      <div class="mv-container">
+        <nav class="bd-breadcrumb" id="bd-breadcrumb" aria-label="Breadcrumb">
+          <a href="explore.html">← Back to Catalog</a>
+          <span class="bd-breadcrumb-sep">/</span>
+          <span id="bd-breadcrumb-cat">Comics</span>
+        </nav>
+        <h1 class="bd-page-title" id="bd-page-title">Loading…</h1>
+      </div>
+    </section>
+
+    <!-- ── Main Details Section ── -->
+    <section class="mv-section">
+      <div class="mv-container">
+
+        <!-- Not-found state (hidden by default) -->
+        <div class="bd-not-found" id="bd-not-found" style="display:none;">
+          <h2>Book Not Found</h2>
+          <p>We couldn't find the book you're looking for. It may have been removed or the link is incorrect.</p>
+          <a href="explore.html" class="btn btn-gold">Browse All Books</a>
+        </div>
+
+        <!-- Two-column layout (shown when book loads) -->
+        <div class="bd-layout" id="bd-layout" style="display:none;">
+
+          <!-- LEFT: Cover -->
+          <div class="bd-cover-col">
+            <figure class="bd-cover-figure" id="bd-cover-figure">
+              <img
+                class="bd-cover-img"
+                id="bd-cover-img"
+                src=""
+                alt="Book cover"
+                onerror="this.style.display='none'; document.getElementById('bd-cover-fallback').style.display='flex';"
+              />
+              <div class="bd-cover-fallback" id="bd-cover-fallback" style="display:none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                <span>Cover not available</span>
+              </div>
+              <figcaption class="ai-credit">This image has been AI-generated.</figcaption>
+            </figure>
+
+            <!-- Add to Wishlist button -->
+            <button class="btn btn-outline" id="btn-wishlist" style="width:100%;">
+              ♡ &nbsp;Add to Wishlist
+            </button>
+          </div>
+
+          <!-- RIGHT: Metadata -->
+          <div class="bd-meta-col">
+
+            <!-- Category badge -->
+            <div>
+              <span class="mv-badge mv-badge-gold" id="bd-badge">Comics</span>
+            </div>
+
+            <!-- Book title -->
+            <h2 class="bd-meta-title" id="bd-meta-title"></h2>
+
+            <!-- Credits grid -->
+            <div class="bd-meta-grid">
+              <div class="bd-meta-item">
+                <span class="bd-meta-label">Story by</span>
+                <span class="bd-meta-value" id="bd-story-by">—</span>
+              </div>
+              <div class="bd-meta-item">
+                <span class="bd-meta-label">Art by</span>
+                <span class="bd-meta-value" id="bd-art-by">—</span>
+              </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="bd-rating-row">
+              <div class="bd-stars" id="bd-stars" aria-label="Rating">★★★★★</div>
+              <span class="bd-rating-num" id="bd-rating-num">0.0</span>
+              <span class="bd-review-count" id="bd-review-count">(0 reviews)</span>
+            </div>
+
+            <!-- Short description -->
+            <p class="bd-description" id="bd-description"></p>
+
+            <!-- Action rows -->
+            <div class="bd-actions">
+              <!-- Physical -->
+              <div class="bd-action-row">
+                <div class="bd-price-block">
+                  <span class="bd-price-label">Physical Copy</span>
+                  <span class="bd-price" id="bd-physical-price">Rs. 0</span>
+                </div>
+                <button class="btn btn-gold" id="btn-add-cart">🛒 &nbsp;Add to Cart</button>
+              </div>
+              <!-- Digital -->
+              <div class="bd-action-row">
+                <div class="bd-price-block">
+                  <span class="bd-price-label">Digital Access</span>
+                  <span class="bd-price" id="bd-digital-price">Rs. 0</span>
+                </div>
+                <a href="reader.html" class="btn btn-outline" id="btn-read-online">📖 &nbsp;Read Online</a>
+              </div>
+            </div>
+
+          </div><!-- /.bd-meta-col -->
+        </div><!-- /.bd-layout -->
+
+        <!-- ── Tabs Section ── -->
+        <div class="bd-tabs-section" id="bd-tabs-section" style="display:none;">
+          <nav class="bd-tab-nav" role="tablist" aria-label="Book information tabs">
+            <button class="bd-tab-btn active" id="tab-btn-synopsis" role="tab" aria-selected="true" aria-controls="tab-panel-synopsis" onclick="switchTab('synopsis')">Read Synopsis</button>
+            <button class="bd-tab-btn" id="tab-btn-details" role="tab" aria-selected="false" aria-controls="tab-panel-details" onclick="switchTab('details')">Details</button>
+          </nav>
+
+          <div class="bd-tab-panel active" id="tab-panel-synopsis" role="tabpanel" aria-labelledby="tab-btn-synopsis">
+            <p class="bd-synopsis-text" id="bd-synopsis"></p>
+          </div>
+
+          <div class="bd-tab-panel" id="tab-panel-details" role="tabpanel" aria-labelledby="tab-btn-details">
+            <table class="bd-details-table" id="bd-details-table">
+              <tbody>
+                <tr><th>Publisher</th><td id="det-publisher">—</td></tr>
+                <tr><th>Genre</th><td id="det-genre">—</td></tr>
+                <tr><th>Pages</th><td id="det-pages">—</td></tr>
+                <tr><th>Language</th><td id="det-language">—</td></tr>
+                <tr><th>Released</th><td id="det-released">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /.mv-container -->
+    </section>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div class="mv-toast" id="mv-toast" role="status" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="../index.html" class="brand" style="margin-bottom:var(--space-2,1rem);display:inline-flex;">
+            <img src="../images/logo.jpg" alt="Multiverse Vault Logo" class="brand-logo" />
+            <div class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </div>
+          </a>
+          <p style="font-size:var(--fs-sm,0.875rem);color:var(--text-muted,#c4b7d4);line-height:1.7;">
+            Your gateway to comics, manga and illustrated stories — physical and digital, all in one place.
+          </p>
+          <p class="brand-ai-credit">This logo image has been generated by Google Gemini.</p>
+        </div>
+
+        <!-- Discover column -->
+        <div>
+          <h4 class="footer-heading">Discover</h4>
+          <ul class="footer-links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="deals.html">Deals</a></li>
+          </ul>
+        </div>
+
+        <!-- Account column -->
+        <div>
+          <h4 class="footer-heading">Account</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="cart.html">Cart</a></li>
+          </ul>
+        </div>
+
+        <!-- Company column -->
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+
+      </div><!-- /.footer-grid -->
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2025</span> Multiverse Vault. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared JS -->
+  <script src="../js/main.js"></script>
+
+  <!-- Page-specific JS -->
+  <script>
+    /* =====================================================
+       BOOK CATALOGUE
+       Mirrors the data in explore.html
+    ===================================================== */
+    const BOOKS = {
+      'shadow-king': {
+        title: 'Shadow King',
+        category: 'comics',
+        categoryLabel: 'Comics',
+        cover: '../images/comics/comic-01.jpg',
+        storyBy: 'Vault Studios',
+        artBy: 'Vault Studios',
+        rating: 4.7,
+        reviewCount: 128,
+        description: 'A dark fantasy epic set in a crumbling empire where a fallen king must reclaim his throne from the shadows.',
+        physicalPrice: 'Rs. 1,299',
+        digitalPrice: 'Rs. 499',
+        synopsis: 'When the Shadow King falls, the world falls with him. Stripped of his throne and his memories, King Aldric must journey through the cursed Veillands to uncover the truth behind his betrayal — before the darkness consumes everything he once protected.',
+        details: { publisher: 'Vault Press', genre: 'Dark Fantasy', pages: 256, language: 'English', released: '2024' }
+      },
+      'crimson-quest': {
+        title: 'Crimson Quest',
+        category: 'comics',
+        categoryLabel: 'Comics',
+        cover: '../images/comics/comic-02.jpg',
+        storyBy: 'Arc Collective',
+        artBy: 'Arc Collective',
+        rating: 4.5,
+        reviewCount: 94,
+        description: 'A band of unlikely heroes embarks on a blood-soaked quest across a dying world.',
+        physicalPrice: 'Rs. 1,199',
+        digitalPrice: 'Rs. 449',
+        synopsis: 'Five strangers. One impossible quest. The Crimson Relic has the power to restore a shattered world — or destroy what little remains. Can this unlikely fellowship survive long enough to find out?',
+        details: { publisher: 'Arc Press', genre: 'Epic Fantasy', pages: 220, language: 'English', released: '2024' }
+      },
+      'guardians-of-eldoria': {
+        title: 'Guardians of Eldoria',
+        category: 'comics',
+        categoryLabel: 'Comics',
+        cover: '../images/comics/comic-03.jpg',
+        storyBy: 'E. Noor',
+        artBy: 'S. Tariq',
+        rating: 4.8,
+        reviewCount: 212,
+        description: 'Ancient guardians awaken to defend a magical realm from an encroaching void.',
+        physicalPrice: 'Rs. 1,499',
+        digitalPrice: 'Rs. 549',
+        synopsis: 'Eldoria has stood for a thousand years — but the Void grows stronger with every passing moon. The Guardians, bound by an ancient oath, must rise again even at the cost of their own existence.',
+        details: { publisher: 'Eldoria Press', genre: 'Fantasy', pages: 288, language: 'English', released: '2025' }
+      },
+      'the-last-realm': {
+        title: 'The Last Realm',
+        category: 'comics',
+        categoryLabel: 'Comics',
+        cover: '../images/comics/comic-04.jpg',
+        storyBy: 'R. Malik',
+        artBy: 'T. Hussain',
+        rating: 4.6,
+        reviewCount: 76,
+        description: 'The final kingdom stands alone against an unstoppable tide of darkness.',
+        physicalPrice: 'Rs. 1,249',
+        digitalPrice: 'Rs. 499',
+        synopsis: 'Every realm has fallen. Only one remains. When the last king refuses to surrender, he sparks a resistance that will either save humanity — or doom it forever.',
+        details: { publisher: 'Vault Press', genre: 'Dark Fantasy', pages: 240, language: 'English', released: '2025' }
+      },
+      'moonlight': {
+        title: 'Moonlight',
+        category: 'manga',
+        categoryLabel: 'Manga',
+        cover: '../images/manga/manga-01.jpg',
+        storyBy: 'Hana Mori',
+        artBy: 'Hana Mori',
+        rating: 4.9,
+        reviewCount: 347,
+        description: 'A quiet romance unfolds under moonlit skies in a sleepy coastal town.',
+        physicalPrice: 'Rs. 999',
+        digitalPrice: 'Rs. 349',
+        synopsis: 'Every night at the old lighthouse, two strangers keep an accidental appointment. Neither knows the other\'s name. Neither plans to fall in love. But the moonlight has other ideas.',
+        details: { publisher: 'Sakura Manga', genre: 'Romance / Slice of Life', pages: 192, language: 'English', released: '2024' }
+      },
+      'crystal-hearts': {
+        title: 'Crystal Hearts',
+        category: 'manga',
+        categoryLabel: 'Manga',
+        cover: '../images/manga/manga-02.jpg',
+        storyBy: 'Yuki Sato',
+        artBy: 'Yuki Sato',
+        rating: 4.7,
+        reviewCount: 189,
+        description: 'A girl discovers her heart holds the power to heal — or shatter — entire worlds.',
+        physicalPrice: 'Rs. 1,049',
+        digitalPrice: 'Rs. 399',
+        synopsis: 'Hana always knew she was different. When a mysterious crystal appears in her chest, she must choose: use its power to heal the broken world around her, or protect herself from those who would rip it out.',
+        details: { publisher: 'Crystal House', genre: 'Fantasy / Romance', pages: 208, language: 'English', released: '2024' }
+      },
+      'whispering-sky': {
+        title: 'Whispering Sky',
+        category: 'manga',
+        categoryLabel: 'Manga',
+        cover: '../images/manga/manga-03.jpg',
+        storyBy: 'Rei Tanaka',
+        artBy: 'Nao Kimura',
+        rating: 4.6,
+        reviewCount: 143,
+        description: 'Above the clouds, a world of floating islands holds secrets older than the earth below.',
+        physicalPrice: 'Rs. 1,099',
+        digitalPrice: 'Rs. 399',
+        synopsis: 'Sora has always dreamed of the sky. When she falls upward into a world of drifting islands and sky-whales, she discovers a civilisation that has been watching her world for centuries — and waiting.',
+        details: { publisher: 'Sky Press', genre: 'Adventure / Fantasy', pages: 224, language: 'English', released: '2025' }
+      },
+      'crimson-moon': {
+        title: 'Crimson Moon',
+        category: 'manga',
+        categoryLabel: 'Manga',
+        cover: '../images/manga/manga-04.jpg',
+        storyBy: 'Akira Ozu',
+        artBy: 'Akira Ozu',
+        rating: 4.8,
+        reviewCount: 265,
+        description: 'A cursed samurai seeks redemption under a moon that bleeds red every hundred years.',
+        physicalPrice: 'Rs. 1,149',
+        digitalPrice: 'Rs. 449',
+        synopsis: 'Every hundred years, the moon runs red with the blood of old sins. Ryuu, cursed by the Moon Demon, has lived through seventeen such nights. This one will be his last — one way or another.',
+        details: { publisher: 'Crimson House', genre: 'Action / Supernatural', pages: 248, language: 'English', released: '2025' }
+      }
+    };
+
+    /* =====================================================
+       UTILITY: Toast notification
+    ===================================================== */
+    function showToast(message) {
+      const toast = document.getElementById('mv-toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 2500);
+    }
+
+    /* =====================================================
+       UTILITY: Star rating builder
+    ===================================================== */
+    function buildStars(rating) {
+      const full  = Math.floor(rating);
+      const half  = rating - full >= 0.5;
+      const empty = 5 - full - (half ? 1 : 0);
+      return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty);
+    }
+
+    /* =====================================================
+       RENDER BOOK
+    ===================================================== */
+    function renderBook(book, id) {
+      /* Page / browser title */
+      document.title = book.title + ' | Multiverse Vault';
+      document.getElementById('page-title').textContent = document.title;
+
+      /* Breadcrumb */
+      var catLink = 'explore.html?category=' + book.category;
+      document.getElementById('bd-breadcrumb').innerHTML =
+        '<a href="explore.html">\u2190 Back to Catalog</a>' +
+        '<span class="bd-breadcrumb-sep">/</span>' +
+        '<a href="' + catLink + '">' + book.categoryLabel + '</a>';
+
+      /* Page H1 */
+      document.getElementById('bd-page-title').textContent = book.title;
+
+      /* Cover image – reset fallback first so a fresh load attempt is clean */
+      var img = document.getElementById('bd-cover-img');
+      var fallback = document.getElementById('bd-cover-fallback');
+      img.style.display = '';          /* ensure img is visible before src is set */
+      fallback.style.display = 'none'; /* hide fallback before attempting load    */
+      img.alt = book.title + ' cover';
+      img.src = book.cover;            /* set src last so onerror fires correctly */
+
+      /* Badge + H2 */
+      document.getElementById('bd-badge').textContent = book.categoryLabel;
+      document.getElementById('bd-meta-title').textContent = book.title;
+
+      /* Credits */
+      document.getElementById('bd-story-by').textContent = book.storyBy;
+      document.getElementById('bd-art-by').textContent   = book.artBy;
+
+      /* Rating */
+      document.getElementById('bd-stars').textContent       = buildStars(book.rating);
+      document.getElementById('bd-stars').setAttribute('aria-label', book.rating + ' out of 5 stars');
+      document.getElementById('bd-rating-num').textContent  = book.rating.toFixed(1);
+      document.getElementById('bd-review-count').textContent = '(' + book.reviewCount + ' reviews)';
+
+      /* Description */
+      document.getElementById('bd-description').textContent = book.description;
+
+      /* Prices */
+      document.getElementById('bd-physical-price').textContent = book.physicalPrice;
+      document.getElementById('bd-digital-price').textContent  = book.digitalPrice;
+
+      /* Synopsis tab */
+      document.getElementById('bd-synopsis').textContent = book.synopsis;
+
+      /* Details tab */
+      document.getElementById('det-publisher').textContent = book.details.publisher;
+      document.getElementById('det-genre').textContent     = book.details.genre;
+      document.getElementById('det-pages').textContent     = book.details.pages + ' pages';
+      document.getElementById('det-language').textContent  = book.details.language;
+      document.getElementById('det-released').textContent  = book.details.released;
+
+      /* Show layout and tabs */
+      document.getElementById('bd-layout').style.display      = '';
+      document.getElementById('bd-tabs-section').style.display = '';
+    }
+
+    /* =====================================================
+       CART
+    ===================================================== */
+    function addToCart(book, id) {
+      var cart = JSON.parse(localStorage.getItem('mv_cart') || '[]');
+      var existing = cart.find(function (item) { return item.id === id; });
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+      } else {
+        cart.push({ id: id, title: book.title, price: book.physicalPrice, quantity: 1, cover: book.cover });
+      }
+      localStorage.setItem('mv_cart', JSON.stringify(cart));
+
+      /* Update badge via shared main.js API if available */
+      if (window.MultiverseVault && typeof window.MultiverseVault.updateCartBadge === 'function') {
+        window.MultiverseVault.updateCartBadge();
+      }
+
+      showToast('✓  Added to Cart!');
+    }
+
+    /* =====================================================
+       WISHLIST
+    ===================================================== */
+    function addToWishlist(book, id) {
+      var wish = JSON.parse(localStorage.getItem('mv_wishlist') || '[]');
+      var alreadyIn = wish.find(function (item) { return item.id === id; });
+      if (!alreadyIn) {
+        wish.push({ id: id, title: book.title, cover: book.cover });
+        localStorage.setItem('mv_wishlist', JSON.stringify(wish));
+        showToast('♡  Added to Wishlist!');
+      } else {
+        showToast('Already in your Wishlist!');
+      }
+    }
+
+    /* =====================================================
+       TAB SWITCHER
+    ===================================================== */
+    function switchTab(tabName) {
+      var panels  = document.querySelectorAll('.bd-tab-panel');
+      var buttons = document.querySelectorAll('.bd-tab-btn');
+
+      panels.forEach(function (p)  { p.classList.remove('active'); });
+      buttons.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+
+      document.getElementById('tab-panel-' + tabName).classList.add('active');
+      var activeBtn = document.getElementById('tab-btn-' + tabName);
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-selected', 'true');
+    }
+
+    /* =====================================================
+       BOOT
+    ===================================================== */
+    document.addEventListener('DOMContentLoaded', function () {
+      /* Parse ?book=<id> from URL */
+      var params = new URLSearchParams(window.location.search);
+      var bookId = params.get('book');
+
+      var book = bookId ? BOOKS[bookId] : null;
+
+      if (!book) {
+        /* Show not-found state */
+        document.getElementById('bd-not-found').style.display   = '';
+        document.getElementById('bd-layout').style.display       = 'none';
+        document.getElementById('bd-tabs-section').style.display = 'none';
+        document.getElementById('bd-page-title').textContent     = 'Book Not Found';
+        return;
+      }
+
+      /* Render the book */
+      renderBook(book, bookId);
+
+      /* Wire: Add to Cart */
+      document.getElementById('btn-add-cart').addEventListener('click', function () {
+        addToCart(book, bookId);
+      });
+
+      /* Wire: Add to Wishlist */
+      document.getElementById('btn-wishlist').addEventListener('click', function () {
+        addToWishlist(book, bookId);
+      });
+    });
+  </script>
+
+</body>
+</html>
