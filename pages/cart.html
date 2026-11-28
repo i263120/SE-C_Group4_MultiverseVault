@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review your selected comics, manga, and illustrated editions in your Multiverse Vault shopping cart.">
+  <title>Shopping Cart | Multiverse Vault</title>
+
+  <!-- Google Fonts (Cinzel + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets (Subpage Relative Paths: ../) -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Cart Page Layout Styles (Uses shared CSS variables from css/style.css) -->
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .cart-hero {
+      padding: var(--space-5) 0 var(--space-4);
+      border-bottom: 1px solid var(--border-gold);
+      background:
+        radial-gradient(circle at 15% 25%, rgba(212, 175, 55, 0.1), transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(92, 52, 150, 0.25), transparent 55%);
+    }
+
+    .mv-breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .mv-breadcrumb a:hover {
+      color: var(--gold-light);
+    }
+
+    .cart-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .cart-header-row p {
+      margin-top: 0.45rem;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .cart-items-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .cart-item-card:hover {
+      transform: none;
+    }
+
+    .cart-item-row {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      align-items: stretch;
+    }
+
+    .cart-item-cover {
+      width: 92px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      background-color: var(--bg-elevated);
+      aspect-ratio: 18 / 25;
+    }
+
+    .cart-item-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .cart-item-title {
+      margin-top: 0.45rem;
+      color: var(--text-cream);
+    }
+
+    .cart-item-pricing {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .cart-line-total {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .cart-unit-price {
+      display: block;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      padding-top: var(--space-1);
+      border-top: 1px solid var(--border-gold);
+    }
+
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--bg-vault);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: var(--fs-base);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .qty-btn:hover {
+      background-color: rgba(212, 175, 55, 0.16);
+      color: var(--text-cream);
+    }
+
+    .qty-value {
+      min-width: 38px;
+      text-align: center;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-cream);
+      border-left: 1px solid var(--border-gold);
+      border-right: 1px solid var(--border-gold);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .cart-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .cart-toolbar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    /* Order Summary Card */
+    .cart-summary-card {
+      position: sticky;
+      top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .cart-summary-card:hover {
+      transform: none;
+    }
+
+    .promo-box {
+      margin: var(--space-3) 0;
+      padding: var(--space-2);
+      background-color: var(--bg-vault);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+    }
+
+    .promo-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.45rem;
+    }
+
+    .promo-input-row .mv-input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .promo-hints {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .promo-chip {
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-gold);
+      background-color: var(--bg-elevated);
+      color: var(--gold-light);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      transition: border-color var(--transition), background-color var(--transition);
+    }
+
+    .promo-chip:hover {
+      border-color: var(--gold-primary);
+      background-color: rgba(212, 175, 55, 0.14);
+    }
+
+    .mv-feedback {
+      margin-top: 0.65rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: var(--fs-xs);
+      font-weight: 500;
+    }
+
+    .mv-feedback.is-success {
+      background-color: rgba(63, 163, 112, 0.16);
+      border: 1px solid rgba(63, 163, 112, 0.5);
+      color: #a8e6c5;
+    }
+
+    .mv-feedback.is-error {
+      background-color: rgba(217, 83, 79, 0.16);
+      border: 1px solid rgba(217, 83, 79, 0.55);
+      color: #ffb3b0;
+    }
+
+    .active-promo-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: var(--radius-sm);
+      background-color: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-gold-strong);
+      font-size: var(--fs-xs);
+      color: var(--gold-light);
+    }
+
+    .summary-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: var(--space-3);
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+    }
+
+    .summary-row strong {
+      color: var(--text-cream);
+      font-weight: 600;
+    }
+
+    .summary-row.is-discount strong {
+      color: #8ee0b5;
+    }
+
+    .summary-total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--border-gold-strong);
+      margin-bottom: var(--space-2);
+    }
+
+    .summary-total-label {
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      color: var(--text-cream);
+    }
+
+    .summary-total-value {
+      font-family: var(--font-heading);
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .shipping-note {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .summary-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Empty Cart State */
+    .empty-state-card {
+      text-align: center;
+      padding: var(--space-5) var(--space-3);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .empty-state-card:hover {
+      transform: none;
+    }
+
+    .empty-state-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin-bottom: var(--space-2);
+      border-radius: var(--radius-pill);
+      background-color: rgba(212, 175, 55, 0.14);
+      border: 1px solid var(--border-gold-strong);
+      font-family: var(--font-heading);
+      font-size: var(--fs-xl);
+      color: var(--gold-light);
+    }
+
+    .empty-state-card p {
+      max-width: 46ch;
+      margin: var(--space-1) auto var(--space-3);
+    }
+
+    .empty-state-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    @media (max-width: 1024px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-summary-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cart-item-row {
+        flex-direction: column;
+      }
+
+      .cart-item-cover {
+        width: 110px;
+      }
+
+      .cart-item-top {
+        flex-direction: column;
+      }
+
+      .cart-item-pricing {
+        text-align: left;
+      }
+
+      .promo-input-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ==================== SHARED HEADER (SUBPAGE) ==================== -->
+  <header class="site-header">
+    <div class="mv-container navbar">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">MV</span>
+        <span class="brand-text">
+          <span class="brand-name">Multiverse Vault</span>
+          <span class="brand-tagline">Read. Collect. Belong.</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="new-releases.html" class="nav-link">New Releases</a></li>
+          <li><a href="deals.html" class="nav-link">Deals</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="my-library.html" class="nav-action-link">My Library</a>
+          <a href="wishlist.html" class="nav-action-link">Wishlist</a>
+          <a href="cart.html" class="nav-action-link">
+            Cart <span id="nav-cart-count" class="cart-count">0</span>
+          </a>
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== CART PAGE CONTENT ==================== -->
+  <main id="cart-page">
+    <section class="cart-hero">
+      <div class="mv-container">
+        <nav class="mv-breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-cream">Shopping Cart</span>
+        </nav>
+
+        <div class="cart-header-row">
+          <div>
+            <span class="mv-badge mv-badge-gold">Your Vault Satchel</span>
+            <h1 style="margin-top: 0.6rem;">Shopping Cart</h1>
+            <p id="cart-item-count-text">0 items in your satchel</p>
+          </div>
+          <a href="explore.html" class="btn btn-outline btn-sm">Continue Shopping</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mv-section">
+      <div class="mv-container">
+        <!-- Empty Cart State -->
+        <div id="cart-empty-state" class="mv-card empty-state-card" hidden>
+          <div class="empty-state-icon" aria-hidden="true">MV</div>
+          <h2>Your Vault Satchel Is Empty</h2>
+          <p>
+            Looks like you haven&rsquo;t added any comics, manga volumes, or collector&rsquo;s editions yet.
+            Explore our shelves or load sample editions to preview checkout.
+          </p>
+          <div class="empty-state-actions">
+            <a href="explore.html" class="btn btn-gold">Explore Catalog</a>
+            <a href="deals.html" class="btn btn-outline">Browse Vault Deals</a>
+            <button type="button" id="load-sample-cart-btn" class="btn btn-ghost">Load Sample Items</button>
+          </div>
+        </div>
+
+        <!-- Cart Layout: Items + Order Summary -->
+        <div class="cart-layout">
+          <div id="cart-items-wrapper">
+            <div id="cart-items-list" class="cart-items-stack" aria-live="polite"></div>
+
+            <div class="cart-toolbar">
+              <div class="cart-toolbar-links">
+                <a href="explore.html" class="btn btn-outline btn-sm">Add More Titles</a>
+                <a href="new-releases.html" class="btn btn-ghost btn-sm">View New Releases</a>
+              </div>
+              <button type="button" id="clear-cart-btn" class="btn btn-ghost btn-sm">Clear Cart</button>
+            </div>
+          </div>
+
+          <!-- Order Summary & Discount Box -->
+          <aside id="cart-summary-card" class="mv-card cart-summary-card" aria-label="Order Summary">
+            <div class="mv-card-body">
+              <h2 class="mv-card-title">Order Summary</h2>
+              <p class="mv-card-meta">Review your quantities, apply a guild discount code, and proceed to delivery details.</p>
+
+              <!-- Discount Code Box -->
+              <form id="discount-form" class="promo-box" novalidate>
+                <label for="discount-code-input" class="mv-label">Discount Code</label>
+                <div class="promo-input-row">
+                  <input
+                    type="text"
+                    id="discount-code-input"
+                    class="mv-input"
+                    placeholder="Enter code (e.g. VAULT10)"
+                    autocomplete="off"
+                  >
+                  <button type="submit" id="apply-discount-btn" class="btn btn-outline">Apply</button>
+                </div>
+
+                <div class="promo-hints">
+                  <span>Try:</span>
+                  <button type="button" class="promo-chip" data-promo-chip="VAULT10">VAULT10</button>
+                  <button type="button" class="promo-chip" data-promo-chip="ARCHIVE20">ARCHIVE20</button>
+                  <button type="button" class="promo-chip" data-promo-chip="FREESHIP">FREESHIP</button>
+                </div>
+
+                <p id="discount-feedback" class="mv-feedback" role="status" hidden></p>
+
+                <div id="active-promo-banner" class="active-promo-pill" hidden>
+                  <span id="active-promo-name"></span>
+                  <button type="button" id="remove-promo-btn" class="btn btn-ghost btn-sm">Remove</button>
+                </div>
+              </form>
+
+              <!-- Cost Breakdown -->
+              <div class="summary-rows">
+                <div class="summary-row">
+                  <span>Subtotal</span>
+                  <strong id="summary-subtotal">$0.00</strong>
+                </div>
+                <div id="summary-discount-row" class="summary-row is-discount" hidden>
+                  <span>Discount (<span id="summary-discount-code"></span>)</span>
+                  <strong id="summary-discount">−$0.00</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Estimated Shipping</span>
+                  <strong id="summary-shipping">$0.00</strong>
+                </div>
+              </div>
+
+              <div class="summary-total-row">
+                <span class="summary-total-label">Total</span>
+                <span id="summary-total" class="summary-total-value">$0.00</span>
+              </div>
+
+              <p id="shipping-threshold-note" class="shipping-note"></p>
+
+              <div class="summary-actions">
+                <a href="checkout.html" id="proceed-checkout-btn" class="btn btn-gold btn-lg btn-block-mobile">
+                  Proceed to Checkout &rarr;
+                </a>
+                <a href="explore.html" class="btn btn-outline btn-block-mobile">Continue Shopping</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SHARED FOOTER (SUBPAGE) ==================== -->
+  <footer class="site-footer">
+    <div class="mv-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">MV</span>
+            <span class="brand-text">
+              <span class="brand-name">Multiverse Vault</span>
+              <span class="brand-tagline">Read. Collect. Belong.</span>
+            </span>
+          </a>
+          <p>
+            A fantasy-inspired haven for comic books, manga volumes, and collector's illustrated editions.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Discover</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="explore.html">Explore Catalog</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="reviews.html">Reader Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Your Vault</h3>
+          <ul class="footer-links">
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Guild &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year">2026</span> Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared & Cart Scripts (Subpage Relative Paths: ../) -->
+  <script src="../js/main.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>
