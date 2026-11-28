@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 500" role="img" aria-label="Crimson Covenant cover art">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="360" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#280b23"/>
+      <stop offset="55%" stop-color="#451332"/>
+      <stop offset="100%" stop-color="#0d0614"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="500" fill="url(#bg5)"/>
+  <rect x="16" y="16" width="328" height="468" rx="12" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="1.5"/>
+  <circle cx="180" cy="195" r="82" fill="#18081a" stroke="#f2c94c" stroke-width="1.8"/>
+  <path d="M180 120C215 162 215 225 180 268C145 225 145 162 180 120Z" fill="#e0566b" fill-opacity="0.85" stroke="#f7d76e" stroke-width="1.5"/>
+  <circle cx="180" cy="195" r="18" fill="#18081a" stroke="#f7d76e" stroke-width="1.8"/>
+  <text x="180" y="60" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="12" letter-spacing="3">WEBTOON ORIGINAL</text>
+  <text x="180" y="382" text-anchor="middle" fill="#faf6ef" font-family="Georgia, serif" font-size="24" font-weight="bold">CRIMSON</text>
+  <text x="180" y="414" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="26" font-weight="bold" letter-spacing="2">COVENANT</text>
+  <text x="180" y="446" text-anchor="middle" fill="#c8c0d8" font-family="sans-serif" font-size="12" letter-spacing="2">HA-EUN PARK</text>
+</svg>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Library | Multiverse Vault</title>
+  <meta name="description" content="Access your unlocked digital comics, manga volumes, webtoons, and collector's editions inside Multiverse Vault.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/vault-pages.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../js/vault-pages.js" defer></script>
+</head>
+<body class="mv-body">
+  <header class="mv-header">
+    <div class="mv-container mv-nav-bar">
+      <a class="mv-brand" href="../index.html" aria-label="Multiverse Vault Home">
+        <img class="mv-brand-logo" src="../images/multiverse-vault-logo.svg" alt="Multiverse Vault logo" width="42" height="42">
+        <span class="mv-brand-text">
+          <span class="mv-brand-name">MULTIVERSE VAULT</span>
+          <span class="mv-brand-tagline">READ. COLLECT. BELONG.</span>
+        </span>
+      </a>
+
+      <nav class="mv-nav-desktop" aria-label="Primary navigation">
+        <ul class="mv-nav-group">
+          <li><a class="mv-nav-link" href="../index.html">Home</a></li>
+          <li><a class="mv-nav-link" href="explore.html">Explore</a></li>
+          <li><a class="mv-nav-link" href="new-releases.html">New Releases</a></li>
+          <li><a class="mv-nav-link" href="deals.html">Deals</a></li>
+          <li><a class="mv-nav-link" href="reviews.html">Reviews</a></li>
+          <li><a class="mv-nav-link" href="about.html">About Us</a></li>
+        </ul>
+
+        <span class="mv-nav-divider" aria-hidden="true"></span>
+
+        <ul class="mv-nav-group">
+          <li><a class="mv-nav-link is-active" href="my-library.html" aria-current="page">My Library</a></li>
+          <li>
+            <a class="mv-nav-link" href="wishlist.html">
+              Wishlist
+              <span class="mv-nav-badge mv-nav-badge--subtle" data-wishlist-count>4</span>
+            </a>
+          </li>
+          <li>
+            <a class="mv-nav-link" href="cart.html">
+              Cart
+              <span class="mv-nav-badge" data-cart-count>0</span>
+            </a>
+          </li>
+          <li><a class="mv-login-btn" href="login.html">Login</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="mv-menu-toggle" id="mvMenuToggle" aria-expanded="false" aria-controls="mvMobileDrawer" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mv-mobile-drawer" id="mvMobileDrawer">
+      <ul class="mv-mobile-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="new-releases.html">New Releases</a></li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mv-mobile-divider" aria-hidden="true"></li>
+        <li><a class="is-active" href="my-library.html" aria-current="page">My Library</a></li>
+        <li><a href="wishlist.html">Wishlist <span class="mv-nav-badge mv-nav-badge--subtle" data-wishlist-count>4</span></a></li>
+        <li><a href="cart.html">Cart <span class="mv-nav-badge" data-cart-count>0</span></a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="mv-main">
+    <section class="mv-hero">
+      <div class="mv-container mv-hero-grid">
+        <div>
+          <span class="mv-pill-badge">READ. COLLECT. BELONG. · MY LIBRARY</span>
+          <h1 class="mv-hero-title">Stories Worth Shelf Space – Ready Anytime.</h1>
+          <p class="mv-hero-subtitle">
+            Revisit your unlocked comic issues, manga volumes, webtoons, and collector’s illustrated editions.
+            Pick up right where you left off or track every chapter across your personal sanctuary.
+          </p>
+
+          <div class="mv-stats-row" aria-label="Library reading statistics">
+            <div class="mv-stat-card">
+              <span class="mv-stat-value" id="statTotalTitles">6</span>
+              <span class="mv-stat-label">Owned Titles</span>
+            </div>
+            <div class="mv-stat-card">
+              <span class="mv-stat-value" id="statReadingCount">3</span>
+              <span class="mv-stat-label">Currently Reading</span>
+            </div>
+            <div class="mv-stat-card">
+              <span class="mv-stat-value" id="statCompletedCount">2 · 83 Ch</span>
+              <span class="mv-stat-label">Completed &amp; Chapters</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-hero-frame-outer">
+          <div class="mv-hero-frame-inner" id="librarySpotlight">
+            <!-- Populated dynamically by vault-pages.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mv-container" aria-label="Library collection">
+      <div class="mv-toolbar">
+        <div class="mv-filter-tabs" role="tablist" aria-label="Filter library by format">
+          <button type="button" class="mv-filter-tab is-active" data-lib-category="All">All</button>
+          <button type="button" class="mv-filter-tab" data-lib-category="Comics">Comics</button>
+          <button type="button" class="mv-filter-tab" data-lib-category="Manga">Manga</button>
+          <button type="button" class="mv-filter-tab" data-lib-category="Webtoons">Webtoons</button>
+          <button type="button" class="mv-filter-tab" data-lib-category="Collector Editions">Collector Editions</button>
+        </div>
+
+        <div class="mv-toolbar-controls">
+          <div class="mv-search-wrap">
+            <svg class="mv-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <label class="mv-sr-only" for="librarySearch">Search your library</label>
+            <input type="search" id="librarySearch" class="mv-input" placeholder="Search title or creator...">
+          </div>
+
+          <label class="mv-sr-only" for="libraryStatusFilter">Filter by reading status</label>
+          <select id="libraryStatusFilter" class="mv-select">
+            <option value="All">All Statuses</option>
+            <option value="Reading">Reading</option>
+            <option value="Completed">Completed</option>
+            <option value="Unread">Unread</option>
+          </select>
+
+          <label class="mv-sr-only" for="librarySort">Sort library</label>
+          <select id="librarySort" class="mv-select">
+            <option value="recent">Sort: Recently Read</option>
+            <option value="progress">Sort: Most Progress</option>
+            <option value="title">Sort: Title A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mv-section-head">
+        <h2 class="mv-section-title">Your Unlocked Shelf</h2>
+        <span class="mv-section-count" id="libraryResultCount">Showing 6 of 6 titles</span>
+      </div>
+
+      <div class="mv-grid" id="libraryGrid">
+        <!-- Populated dynamically by vault-pages.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Quick Reader Preview Modal -->
+  <div class="mv-modal-backdrop" id="readerModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="readerModalTitle">
+    <div class="mv-modal">
+      <div class="mv-modal-header">
+        <div>
+          <span class="mv-eyebrow" id="readerModalMeta">Chapter Preview</span>
+          <h2 class="mv-modal-title" id="readerModalTitle">Loading...</h2>
+        </div>
+        <button type="button" class="mv-modal-close" data-close-reader aria-label="Close reader preview">&times;</button>
+      </div>
+      <div class="mv-modal-body">
+        <div class="mv-reader-excerpt" id="readerModalExcerpt"></div>
+      </div>
+      <div class="mv-modal-footer">
+        <button type="button" class="mv-btn mv-btn-primary mv-btn-sm" id="readerAdvanceBtn">Complete Next Chapter (+1)</button>
+        <div style="display:flex; gap:10px;">
+          <a class="mv-btn mv-btn-secondary mv-btn-sm" id="readerFullPageLink" href="reader.html">Open Full Reader</a>
+          <button type="button" class="mv-btn mv-btn-secondary mv-btn-sm" data-close-reader>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mv-toast" id="mvToast" role="status" aria-live="polite"></div>
+
+  <footer class="mv-footer">
+    <div class="mv-container">
+      <div class="mv-footer-grid">
+        <div class="mv-footer-brand-col">
+          <a class="mv-brand" href="../index.html">
+            <img class="mv-brand-logo" src="../images/multiverse-vault-logo.svg" alt="Multiverse Vault logo" width="38" height="38">
+            <span class="mv-brand-text">
+              <span class="mv-brand-name">MULTIVERSE VAULT</span>
+              <span class="mv-brand-tagline">READ. COLLECT. BELONG.</span>
+            </span>
+          </a>
+          <p class="mv-footer-desc">
+            Join our vault for early collector drops, digital chapter dispatches, and member-only discounts across fantasy comics and manga.
+          </p>
+          <form class="mv-newsletter-form" id="mvNewsletterForm" novalidate>
+            <label class="mv-sr-only" for="mvNewsletterEmail">Email address</label>
+            <input type="email" id="mvNewsletterEmail" class="mv-input" placeholder="you@gmail.com" required>
+            <button type="submit" class="mv-btn mv-btn-primary mv-btn-sm">Join Our Vault</button>
+          </form>
+          <p class="mv-newsletter-msg" id="mvNewsletterMsg" aria-live="polite"></p>
+        </div>
+
+        <div>
+          <h3 class="mv-footer-heading">Shop</h3>
+          <ul class="mv-footer-links">
+            <li><a href="explore.html">Explore Catalogue</a></li>
+            <li><a href="new-releases.html">New Releases</a></li>
+            <li><a href="deals.html">Vault Deals</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="mv-footer-heading">Account</h3>
+          <ul class="mv-footer-links">
+            <li><a href="login.html">Log In / Sign Up</a></li>
+            <li><a href="my-library.html">My Library</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="reader.html">Digital Reader</a></li>
+            <li><a href="contact.html">Help &amp; Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mv-footer-bottom">
+        <span>&copy; 2026 Multiverse Vault. All rights reserved.</span>
+        <span>Read. Collect. Belong.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

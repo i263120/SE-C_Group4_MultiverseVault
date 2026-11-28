@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 500" role="img" aria-label="Chronicles of Aetheria cover art">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="360" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#19103b"/>
+      <stop offset="55%" stop-color="#2c1763"/>
+      <stop offset="100%" stop-color="#0b0719"/>
+    </linearGradient>
+    <radialGradient id="orb1" cx="50%" cy="38%" r="42%">
+      <stop offset="0%" stop-color="#f7d76e" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#9b5de5" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#19103b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="360" height="500" fill="url(#bg1)"/>
+  <circle cx="180" cy="195" r="145" fill="url(#orb1)"/>
+  <rect x="16" y="16" width="328" height="468" rx="12" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="1.5"/>
+  <rect x="24" y="24" width="312" height="452" rx="8" fill="none" stroke="#d4af37" stroke-opacity="0.22" stroke-width="1"/>
+  <!-- Celestial Astrolabe -->
+  <circle cx="180" cy="195" r="76" fill="none" stroke="#f2c94c" stroke-width="1.8" stroke-opacity="0.75"/>
+  <circle cx="180" cy="195" r="54" fill="none" stroke="#f2c94c" stroke-width="1" stroke-dasharray="6 5" stroke-opacity="0.7"/>
+  <polygon points="180,108 194,178 264,195 194,212 180,282 166,212 96,195 166,178" fill="#f2c94c" fill-opacity="0.85"/>
+  <circle cx="180" cy="195" r="22" fill="#140d2b" stroke="#f7d76e" stroke-width="2"/>
+  <path d="M55 320L125 270L180 308L245 258L305 320V460H55Z" fill="#0d081c" fill-opacity="0.85"/>
+  <text x="180" y="62" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="13" letter-spacing="4">VOLUME IV</text>
+  <text x="180" y="388" text-anchor="middle" fill="#faf6ef" font-family="Georgia, serif" font-size="25" font-weight="bold">CHRONICLES OF</text>
+  <text x="180" y="418" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="28" font-weight="bold" letter-spacing="2">AETHERIA</text>
+  <text x="180" y="448" text-anchor="middle" fill="#c8c0d8" font-family="sans-serif" font-size="12" letter-spacing="2">SORA TAKAHASHI</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 500" role="img" aria-label="Neon Valkyrie cover art">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="360" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1b0e3a"/>
+      <stop offset="50%" stop-color="#3a1659"/>
+      <stop offset="100%" stop-color="#0b0618"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="500" fill="url(#bg4)"/>
+  <rect x="16" y="16" width="328" height="468" rx="12" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="1.5"/>
+  <!-- Wings Emblem -->
+  <path d="M180 240L85 135L125 188L72 185L135 225L105 255L180 240Z" fill="#f2c94c" fill-opacity="0.88"/>
+  <path d="M180 240L275 135L235 188L288 185L225 225L255 255L180 240Z" fill="#f2c94c" fill-opacity="0.88"/>
+  <polygon points="180,122 204,205 180,295 156,205" fill="#140d2b" stroke="#f7d76e" stroke-width="2"/>
+  <circle cx="180" cy="198" r="14" fill="#9b5de5" stroke="#f7d76e" stroke-width="2"/>
+  <text x="180" y="60" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="12" letter-spacing="4">ISSUE #14</text>
+  <text x="180" y="382" text-anchor="middle" fill="#faf6ef" font-family="Georgia, serif" font-size="24" font-weight="bold">NEON</text>
+  <text x="180" y="414" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="27" font-weight="bold" letter-spacing="2">VALKYRIE</text>
+  <text x="180" y="446" text-anchor="middle" fill="#c8c0d8" font-family="sans-serif" font-size="12" letter-spacing="2">MARCUS CHEN</text>
+</svg>

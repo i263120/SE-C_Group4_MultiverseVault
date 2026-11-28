@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 500" role="img" aria-label="The Obsidian Blade cover art">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="360" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#120821"/>
+      <stop offset="50%" stop-color="#2c123d"/>
+      <stop offset="100%" stop-color="#090512"/>
+    </linearGradient>
+    <radialGradient id="moon2" cx="50%" cy="35%" r="40%">
+      <stop offset="0%" stop-color="#ff9e6d" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#120821" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="360" height="500" fill="url(#bg2)"/>
+  <circle cx="180" cy="180" r="135" fill="url(#moon2)"/>
+  <rect x="16" y="16" width="328" height="468" rx="12" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="1.5"/>
+  <circle cx="180" cy="175" r="68" fill="#180d2c" stroke="#f2c94c" stroke-width="2"/>
+  <!-- Sword Silhouette -->
+  <path d="M180 78L190 104V235H170V104L180 78Z" fill="#f7d76e"/>
+  <rect x="148" y="232" width="64" height="10" rx="4" fill="#d4af37"/>
+  <rect x="174" y="242" width="12" height="36" rx="3" fill="#c49424"/>
+  <circle cx="180" cy="285" r="8" fill="#f2c94c"/>
+  <path d="M90 155L135 190M270 155L225 190" stroke="#f2c94c" stroke-opacity="0.45" stroke-width="1.5"/>
+  <text x="180" y="60" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="12" letter-spacing="4">SOVEREIGN ARC</text>
+  <text x="180" y="378" text-anchor="middle" fill="#faf6ef" font-family="Georgia, serif" font-size="22" font-weight="bold">THE OBSIDIAN</text>
+  <text x="180" y="410" text-anchor="middle" fill="#f2c94c" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="3">BLADE</text>
+  <text x="180" y="446" text-anchor="middle" fill="#c8c0d8" font-family="sans-serif" font-size="12" letter-spacing="2">KENJIRO MORI</text>
+</svg>
